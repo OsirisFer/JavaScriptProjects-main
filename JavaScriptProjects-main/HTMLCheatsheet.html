@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<!-- Metadatos -->
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prueba de RIA</title>
+</head>
+<body>
+    <h1>Titulo del documento</h1>
+    <h2>Titulo de seccion 1</h2>
+    <h3>Titulo de subseccion</h3>
+    <!-- Siempre poner el alt en img para poner texto alternativo -->
+    <p>Parrafo <img src="" alt="Hola"></p>
+    <h2>Titulo de seccion 2</h2>
+    <ul>
+        <li>item 1</li>
+    </ul> 
+    <p>Otro tipo de lista</p>
+    <ol>
+        <li>item 1</li>
+    </ol>
+    <p>Lista de definicion</p>
+    <dl>
+        <dt>HTML</dt>
+        <dd>Lenguaje de marcado de hipertexto</dd>
+    </dl>
+    <H2>AGRUPADORES</H2>
+    <dl>
+        <dt>div</dt>
+        <dd><div>Agrupador de contenido de toda indole, semanticamente no significa nada, es un bloque que contiene cosas</div></dd>
+        <dt>span</dt>
+        <dd><span>Agrupador en linea, semanticamente es igual que el div, solo que el div es de bloque y el span es inline </span></dd>
+        <H2> AGRUPADORES ESPECIALIZADOS</H2>
+        <dt>main</dt>
+        <dd>Agrupador especializado que indica el contenido principal</dd>
+        <dt>aside</dt>
+        <dd>Contenido que va aparte, referencia aparte, contenido bueno de ver que se despega del contenido principal</dd>
+        <dt>header</dt>
+        <dd>Para hacer las cabeceras de articulo, pagina, etc</dd>
+        <dt>footer</dt>
+        <dd>Pie de pagina, pie de contenido</dd>
+        <dt>nav</dt>
+        <dd>Normalmente va adentro de los footer y los header, es la navegacion del sitio, por ejemplo podria ser una lista ordenada dentro de un nav lo cual le indica al user agent que es para navegar al docuemnto o afuera de el</dd>
+    </dl>
+    <dl>
+        <dt>link</dt>
+        <dd>Se usa para relaciones entre documentos, por lo general para traer hojas de estilo desde afuera, son hyperlinks que sirven para que el usuario vaya de una pagina a otra, el href brinda la URI, el atributo rel especifica la relacion entre el documento y el link pudiendo ser este stylesheet(hoja de estilo), prefetch que vaya descargando eso de antemano, entre otros. El atributo media es para especificar el dispositrivo donde se mostrara </dd>
+        <!-- <link rel="stylesheet" type="text/css" href=""> --> 
+        <dt>code</dt>
+        <dd>para marcar codigo de un programa, funciona con la eitqueta de preformateado generalmente para respetar espaciado cambio de linea etc <code> if(true)</code></dd>
+        <dt>data</dt>
+        <dd>vincula un contenido dado con una traduccion legible por una maquina, esto es puramente semantico y no va a renderizarse de ninguna forma, value es a modo id<data value="123">valor</data></dd>
+        <dt>kbd</dt>
+        <dd>marca el texto que debe introducir el usuario <kbd>por ejemplo deberia introducir esto</kbd></dd>
+        <dt>figure</dt>
+        <dd> es un elemento de bloque que se usa para imagenes con descrpcion la cual se puede agregar con figcaption, presentacionalmente solo hace salto de linea y pone sangria, figure es en bloque y img es en linea, con</dd>
+        <!-- <figure><img src="pato-.jpg"><figcaption>Descripcion</figcaption></figure> -->
+        <dt>details</dt>
+        <dd>spoiler o detalles expandidos de lo que queriamos hablar, con summary adentro seleccionamos la parte visible que tiene el popup <details><summary>Este es el popup</summary><p>Este es el gran spoiler<p></details></dd>
+        <dt>dialog</dt>
+        <dd>dialogo de texto o alerta, es como una ventana emergente, si le pongo el atributo open aparece</dd>
+        <!-- <dialog open> hola </dialog> -->
+        <dt>video</dt>
+        <dd>para incrustar videos en un documento html, solo no hace nada, precisa de sus atributos que traen el contenido como src, o controls para que aparezcan los controles, autoplay, etc.</dd>
+        <video src="https://www.youtube.com/watch?v=f3dDVtJ2sec&ab_channel=TiagoForte" controls></video>
+        <!-- NO TODOS LOS FORMATOS SON ABIERTOS Y COMPATIBLES, EL WEBM ES EL ESTANDAR Y EL OGG ESTA BUENO DE USAR TAMBIEN -->
+        <dt>audio</dt>
+        <dd>para insertar contenido de audio</dd>
+    </dl>
+</body>
+</html>
