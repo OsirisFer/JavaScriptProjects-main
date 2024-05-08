@@ -1,0 +1,415 @@
+/*
+:root > body { aplica estuilo al body hijo del root }
+:empty{ toma cualquier elemento que no contenga nada realmente ni espacios }
+div:empty{ cualquier div que este vacio }
+body:only-of-type { estilizara aquel elemento unico de su tipo dentro de el body }
+li:nth-child(4){ el li que es hijo numero 4 se estilizara }
+ol:last-child { estilizaria la ultima etiquet p }
+ol li:last-child { estilizaria la li quinto }
+ol li:hover { cada li se estilize si le paso el mouse }
+ol :hover li { todos los li se estilizen si paso el mouse }
+button:active{ cuando lo activo osea mientras lo clickeo se estiliza }
+form{
+	margin: 2em;
+}
+ ESTRUCTURA BASICA SELECTORES
+selector {
+	propiedad: valor;
+}
+selector: selecciona el o los elementos del DOM a los cuales les vamos a aplicar las reglas, osea valores a propiedades
+Como se arma un selector:
+* {
+	selector universal
+}
+etiqueta {
+	selector de etiqueta
+}
+#identificador { 
+	selector de identificador para las etiquetas con id.   EVITARLO y EVITAR REPETIR IDs
+}
+.clase {
+	selector de clase, referencia a elementos con clase
+}
+[ atributo ] {
+	selector de atributo, aplica para cualquiera elemento que tenga dicho atributo
+}
+[ atributo="valor del atributo"]{
+	selector de valor de atributo especifico
+}
+[ atributo*="valor del atributo"]{
+	selector de algo parecidoen el atributo, class es atributo href tambien etc
+}
+[ atributo^="valor del atributo"]{
+	selector de algo cuyo atributo comience con ese valor
+}
+[ atributo$="valor del atributo"]{
+	selector de algo cuyo atributo termine con ese valor
+}
+[ atributo~="valor del atributo"]{
+	selector de algo cuyo atributo tenga algo parecido de ese valor
+}
+COMPUESTOS: se prioriza por especifidad, el mas especifico es el que se aplica, esta se calcula 
+Universal y conbinadores Por ej: *,+                                                0,0,0,0
+Nombre de etiq. y pseudo-elementos Por ej: div::first-line                          0,0,0,1
+clases, pseudo-clases y atributos Por ej: .clase, :hover, [disabled]                0,0,1,0
+identificador Por ej: #identificador                                                0,1,0,0 	EVITAR
+estilos inline Por ej: style="color=red"                                            1,0,0,0		EVITAR
+Por eso hay que evitar identificadores a menos que sea muy necesario.
+Si despues del atributo pongo !important agrega especificidad maxima, por eso hay que evitarlos al igual que los inline.
+
+
+selectorselector siendo mas especificos en el primero uniendole el segundo por ej:
+etiqueta.clase.clase{
+}
+etiqueta[ atributo ]{
+}
+VARIOS AL MISMO TIEMPO
+etiqueta, clase, #id {
+}
+
+DESCENDIENTES: 
+ul p{
+	cualquier p cuyo ancestro sea ul
+}
+ul > li{
+	las etiquetas li que sean hijos directos de ul
+}
+
+ADYACENTES: selectores de elementos hermanos osea del mismo nivel
+.clase + li{
+	li al lado de un clase que sea hermano
+}
+.clase ~ li{
+	li al lado del clase a continuacion
+}
+
+
+
+
+
+Familias de Fuentes Genéricas: El user agent en conjunto con el sistema operativo deciden la fuente que se va a poner, 
+tiene que estar instalada en el sistema, no puede ser cualquiera, si no la encuentra pone una por defecto. 
+font-family acepta una lista de strings es decir se pueden poner varias fuentes que va chequeando si estan instalados de izquierda
+a derecha y usa la que se pueda o la por defecto.
+
+-serif: son los piquitos que tienen abajo la letra para facilitar la lectura
+-las sans-serif: o sin serifa para user interface o textos
+-monospace: para lectura y edicion de textos
+-cursive: mas que nada para adornar o titulos
+*/
+/*BOX MODEL
+Los elementos pueden 
+ser en linea: se pone uno al lado del otro pegaditos, y el tamaño es el contenido en sí, si es inline no aplica el box model
+en bloque: salta de linea y pone el siguiente elemento por debajo y utiliza la totalidad del ancho
+Un elemento no existe sin afectar a otro. Ningun elemento puede tener height o width si no es de bloque
+Padding: margen o borde interno 
+Border: borde o margen
+Margin: margen o borde externo
+
+El tipo de elemento para que sea block o inline se cambia con el display: ;
+PROPIEDADES BOX
+*{
+	box-sizing: border-box; el margin, el border y el padding haran que el contenido del elemento se ajuste al tamaño, por lo que se
+	achicara el contenido a mas margin/border/padding
+	box-sizing: content-box; que el border el padding y el margin no seran tomados en cuenta en el width y height del contenido del 
+	elemento por lo que no se reducira el tamaño del contenido 
+}
+MARGIN
+	margin: auto; solo funciona en el horizontal, entre el propio y el del padre
+	margin: block; hace referencia a la direccion del bloque
+	margin: inline o inline-start o inline-end; hace referencia a la linea el principio o el final
+*{
+	margin-top:;
+	margin-right:;
+	margin-left: ;
+	margin-bottom: ;
+	o 
+	margin: para todos;
+	o		
+	margin: 30px 30px; vertical horizontal
+	o
+	margin: 30px 30px 30px 30px; arriba derecha abajo izquierda
+	o 
+	margin: 30px 30px 30px; arriba horizontal abajo
+}
+PADDING 
+	igual que el MARGIN
+BORDER
+	border-block vertical
+	border-inline horizontal
+	se puede poner border-color: yellow green purple blue; arriba derecha abajo izquierda
+	border style: solid dashed; vertical horizontal
+	BORDER STYLES
+none	No se muestra ningún borde. Como se trata del valor por defecto de cada uno de los bordes, ningún elemento muestra un borde a menos que se establezca de forma explícita
+hidden	Visualmente es idéntico a none, ya que provoca que no se muestre ningún borde. Su única diferencia es la forma en la que el navegador resuelve los conflictos entre bordes adyacentes de las celdas de las tablas
+dotted	Borde punteado, formado por una serie de puntos separados por espacios
+dashed	Borde discontinuo, formado por una serie de pequeños trazos intercalados por espacios
+solid	Borde continuo, formado por una línea recta continua
+double	Borde doble, formado por dos líneas rectas continuas separadas entre sí por un espacio en blanco
+groove	Borde hundido, que visualmente parece que se encuentra por debajo del nivel de la superficie de la pantalla
+ridge	Borde saliente, que visualmente parece que se encuentra por encima del nivel de la superficie de la pantalla
+inset	Borde hundido, que provoca que el elemento que encierra parezca que se encuentra por debajo del nivel de la superficie de la pantalla
+outset	Borde saliente, que provoca que el elemento que encierra parezca que se encuentra por encima del nivel de la superficie de la pantalla
+
+* {
+	outline: 5px solid #000; borde que se puede ver pero que no ocpa espacio
+	border-radius: 25px; que en las esquinas tenga un redondeado y se puede espcificar el tamaño con porcentaje o
+	con pixeles(hay muchas unidades de medida, cuanto mas pixeles mas grande el radio del circulo del borde 
+	esto deja especificar cualquier esquina por ej: border-top-left-radius: 0px;
+
+}
+
+UNIDADES DE MEDIDA
+Absolutas:
+-cm centimetros
+-mm milimetros
+-in pulgadas       En las pantallas se trabajan con pulgadas que son 2.54cm , el resto está basado en esta medida
+-px pixeles	       96avo de una pulgada 1/96inch
+-pt puntos		   1/72inch
+-pc picas		   12pts
+
+SIEMPRE QUE SE PUEDA, SE DEBE EVITAR USAR UNIDADES ABSOLUTAS.
+
+RELATIVAS:
+-em relativo a la fuente(M) el tamaño como relacion es el ancho de la M mayúscula de la fuente actual, poniendo el tamaño de algo en base a la fuente para así poder acomodar las cosas en base a lo que el usuario lea. Solo las monospace
+tienen todas las letras del mismo tamaño asi que habrá variaciones. si pongo .9 es como poner 0.9
+-ex relativo a la fuente relativa a la X mayuscula respecto a su alto
+-ch relativo al ancho del O relativa al ancho del 0 que es el promedio de ancho generalemente de un caracter
+-rem relativo a la fuente de la raíz igual que la em pero en referencia a lala fuente osea el tamaño de la fuente que le pusimos en el html
+-% relativo al padre relativo al tamaño heredado del padre en cuanto a la fuentees decir 2em es igual 200%
+-vw, vh, vmin, vmax relativas al viewport que todavia son nuevas 
+vw es viewport width si ponemos 100vw es el 100% del vw osea que es como porcentaje
+vh es viewport height 
+vmin tamaño minimo del viewport
+vmax tamaño maximo del viewport
+
+TEORÍA DEL COLOR
+Valores de propiedad que dependen mucho de sus espacios:
+
+sRGB: mezclar una gama de colores rojo amarillo azul para crear infinitos colores, en CSS hacemos que la frecuencia de las ondas se muestren para llegar 
+diferentes colores a nuestra vista. Estos colores van del 0 al 255
+
+HSL otra forma de mezclar la luz
+
+Adobe Color Wheel
+
+UNIDADES DE COLOR
+-Los podemos poner por nombre
+-hexadecimal( espacio sRGB) poniendo el # y luego el hexadecimal por ej: #880060
+#RRGGBBAA 8 unidades hexadecimales rojorojoverdeverdeazulazulalfaalfa
+los colores van del 0 al f osea del 0 al 255 pero en hexadecimal
+se puede entonces estas formas hexadecimales:
+#RGB
+#RGBA
+#RRGGBB
+#RRGGBBAA
+POR FUNCION
+Funciones en css:
+funcion(parametros)
+-por funcion rgb/rgba 
+rgb(r,g,b) le ponemos valores del 0 al 255 a los rgb 
+rgba(r,g,b,a) y al alfa decimales del 0 al 1 o porcentajes. Por ej: rgba(255, 0, 0, 0.5) 
+-por funcion hsl/hsla
+hue (tinte) en deg (grados) 0 a 360
+saturacion (cantidad de ese color) por porcentaje con el %
+luminosity (brillo) por porcentaje con el %
+hsl(h,s,l) por ejemplo hsl(180deg, 50%, 50%)
+hsla(h,s,l,a) por ejemplo hsl(180deg, 50%, 50%, 0.5)
+
+VALORES DE ÁNGULOS
+grados: deg
+radianes: rad
+vueltas: turn
+
+VALORES DE TIEMPO y FRECUENCIA
+s segundos
+ms milisegundos
+hz herzios (cantidad de veces por segundo)
+
+PALABRAS CLAVE
+none
+transparent (color transparente)
+unset volver al valor original
+initial vuelve al valor inicial
+all 
+auto 
+default
+
+PSEUDO CLASES
+cosas que estan ahi pero no existen, dependen de cosas como la interaccion del usuario con la aplicacion, del ambiente
+para hacer una pseudo clase:
+.componente.tipodepseudoclase{
+entre los tipos estan hover, focus, target, active, etc
+}
+por ejemplo:
+<style>
+.componente{
+	border: 2px solid black;
+}
+.compponente.abierto{
+	background: red;
+}
+.componente: hover{
+	hover a la clase componente
+}
+.componente: hover p{
+ hover  los p de la clase componente
+}
+
+</style>
+<div class="componente abierto"> <p>algo</p>si le saco el abierto se va el rojo
+Componente
+</div>
+*/
+
+/*
+	LAS PSEUDOCLASES junto con los pseudo elementos, permiten aplicar un estilo a un elemento no solo en relacion al contenido del arbol del documento, sino que tambien en relacion a factores externos como el historial del navegador, estado del contenido, posicion del raton etc.
+	Sintaxis:
+	selector:pseudoclase{
+		propiedad:valor;
+	}	
+	TREE ESTRUCTURED
+:root representa la raiz del documento, en un HTML generalmente es <html>
+en vez de poner 
+html{ }
+ponemos:
+:root{  RECOMENDADO } 
+:empty aplica a cualquier elemento que no tenga nada, un bueno uso es poner display:none; de atributo al :empty y por ejemplo en una lista ordenada no se mostrará y cambiará el orden de la lista es decir si el sexto no tiene nada el septimo que si tiene algo pasará a ser el sexto
+	DE CONTEO por ej:
+:only-child buscara el elemento que sea hijo unico es decir que no tenga hermanos en su mismo nivel
+:only-of-type buscara el elemento etiqueta unico de su tipo
+:first-of-type el primero de su tipo
+:last-child ultimo hijo
+:nth-child(contador) contador puede ser un numero, even o odd, o incluso se puede poner FORMULAS, n seleccionaria todos, 2n serian los pares 2n+1 los impares,
+el  xn + y , X siendo cada cuantos saltea y el Y donde empezaria en funcion de los elementos hijos, a menos que especifique que hijo
+	DE COMPORTAMIENTO O USER ACTION
+:hover cuando se le pasa por arriba por el mouse
+:focus cuando me paro en ella, con un tab por ejemplo se estiliza
+:valid si es valido, tiene que estar completado pa ser valido
+
+
+	FUNCIONALES
+por ejemplo :has
+ol:has(li){ si ol tiene lis entonces ol se estiliza estilizo }
+ol:has(li:hover){ si tengo un li al que le hacen hover en el ol, entonces se estiliza el ol}
+:active cuando se activa un elemento, por ejemplo si lo estan clickeando
+CUANDO ABRO UNA ETIQUETA ESTOY GENERANDO UN NODO DE ELEMENTO, LO DE ADENTRO ES UN NODO DE TEXTO SI HAY ALGO 
+
+	FORMS
+Formularios todo elemento que tiene interaccion para recibir informacion del usuario, como un register o login. Contiene parametros para hacer una request al sitio que apunta.
+<form ></form>
+action="" es donde vamos a poner la url a donde vamos enviar todos los datos a recabar
+target="" se espera pero no es necesario un target, donde va a cargarse
+method="" si no le ponemos metodo va a ser GET por defecto, los get pasan parametros y valores a traves de la URL 
+autocomplete="" lo podemos desactivar para que no aparezcan opciones, aparece por defecto
+novalidate="" no tiene que ser validado para ser enviado el formulario
+	LOS <br> ESTA BUENOS UTILIZARLOS EN LOS FORMULARIOS o poniendole display block 
+
+	INPUTS
+Un elemento de tipo
+pueden ser text, password, email, color, date, checkbox, radio, button, reset, submit
+Atributos:
+tabindex para cambiar el orden de los input al tabular
+required tiene que ser requerido
+pattern para poner condiciones a lo que se ingresa y validar datos del cliente(ESTO NO CAMBIA QUE HAYA QUE VALIDAR LOS DATOS EN EL BACKEND) REGEX ES BUENA PAGINA PA PROBAR PATTERNS
+
+	LABEL
+Texto, si le ponemos for de atributo dentro del label lo podemos linkear al input por nombre o id, o podemos encerrar el input dentro del label
+y no usar el for.
+
+Si pongo varios input con el mismo nombre, hago referencia a la misma variable osea la comparten, 
+se forma un radio group por ejemplo. Cada radio button debe tener un value para distinguirlo. Si tengo un grupo 
+de radio button se pone un p al principio antes de los labels asociados a los input.
+Si tengo un label asociado a un input y ese input es un radio button, cuando presiono en el label presiono 
+el input. 
+
+SELECT
+El select no es un combobox, herramienta de seleccion a la cual se le da opciones. Selected es el atributo para 
+poner un valor por defecto en el select. Si le pongo multiple puedo seleccionar multiples apretando control.
+El opt group categoriza las opciones en grupos pero solo en forma visual no de seleccion.
+Si pongo un option con un value vacio, y queda ese seleccionado es como que el usuario no selecciono nada.
+Si yo pongo required en el select va a validar del lado del cliente porque un valor vacio no es una opcion.
+
+DATALIST
+Se pone un input de text con un atributo list que se;ale el datalista que tiene varios options adentro. Es una
+lista de valores probables que el ayuda al usuario a enviar.
+
+BOTONES
+Se va a interactuar con los button a traves del scripting
+SI HAY UN BUTTON QUE NO ES INPUT Y NO TIENE ATRIBUTO TYPE BUTTON DENTRO DE UN FORM PUEDE GENERAR E
+RROR PORQUE FUNCIONA COMO SUBMI.
+
+ESTA PERFECTO BR ENTRE INPUTS EN UN FORM 
+
+FIELDSET 
+agrupa elementos de input dentro de un formulario para darle sentido a los usuarios, sirve de forma estetica
+pero tambien tiene funcionalidad, podemos hacer un wizard por ejemplo que vaya apareciendo a mediante se completa
+
+PSEUDO ELEMENTOS 
+::before es antes pero dentro del contenido en el que estoy y ::after es despues pero dentro del contenido 
+tambien
+
+CONTENT sirve para agregar contenido, si lo mezclo con funciones puedo construir contenido, concatenando cosas 
+por ejemplo. pudiendo poner urls, attr, etc.
+
+ATTR nos deja desde css indicar como se ven las cosas sin que la interaccion del codigo y la estructura y etc no se rompa.
+
+BACKGROUND
+es el conjunto de todos las capas de background. La capa final de un background si o si tiene que tener un color y es la unica que puede tenerlo.
+background image, siempre que traigo una imagen desde una hoja de estilos tengo que poner el path desde el punto pivot correspondiente, no como si estuviera en el html
+Se pueden literalmente generar patrones e imagenes solamente con background y gradients.
+background repeat muchos atributos como que se repita de izquierda a derecha etc.
+
+BOX SHADOW tambien puede tener multiples capas, TEXT SHADOW tambien, BORDER tambien pero no se usa mucho.
+LA FUNCION calc recibe una medida una operacion y otra medida
+
+CUSTOM PROPERTIES
+No son variables, son propiedades.
+selector{
+	propiedad:inherit;
+	--custom-property: valor;
+}
+Se acostumbra poner las propiedades en root para que sean globales var acepta custom properties
+a traves de codigo podemos cambiar las custom properties con JavaScript
+const ctx =$0
+ctx.setAttribute('style', '--cantidad: 5')
+y lo saco con ctx.removeAttribute("style")
+min y max para cuando necesito un valor minimo o maximo
+clamp es similar
+
+Local storage o cualquier api de persistencia local
+Ningun lenguaje precompilado
+POSITION
+STATIC CSSOM tiene que estar ahí sin movimiento
+RELATIVE
+ sale de la capa de todos los elementos estaticos y esta relativa a la posicion estatica a donde deberia estar, lo mueve respecto a su espacio estatico pero aun ocupa su lugar original, generando su propia capa, la primer capa quedara tapada por la segunda y la segunda por la tercer ya asi, esto lo controla el z-index, arrancando del 0.
+ Relative nos deja ponerle top, bottom, left, right, z-index
+ABSOLUTE es removido del flow normal del documento, y no se le crea espacio en el page layout, lo posiciona relativo al padre, al ancestro mas cercano.
+FIXED fijo relativo al viewport independiente que se agrande o se mueva el viewport
+STICKY adopta un position parecido al static pero condicional determinado por el top bottom left y right, una vez llegue a ese limite se pega en la pantalla y queda fixed.
+
+LAYOUT (Display) diagramar todos los elementos, como se posiciona cada uno de los elementos en pantalla
+Existen varios tipos:
+display: table; presenta informacion de forma tabular osea con filas y colummnas
+
+FLEXBOX es un sistema unidimensional, arreglamos todos los elementos en una sola linea, a la cual podemos modificar la direccion con flex-direction
+display: flex; va de izquierda a derecha eje x
+display: row-reverse; de derecha a izquierda
+display: column; de arriba a abajo eje y  
+
+JUSTIFY es todo lo que tiene que ver en la linea principal
+center en el medio de la linea principal
+space-around ocupa toda la linea principal poniendo espacios iguales entre elementos
+ALIGN todo lo que tiene que ver con la linea cruzada
+
+CONTENT se refiere a todo el contenido, todo el rectangulo contenedor con cosas adentro
+ITEM los item individuales
+
+a los elementos le podemos poner un order, todos tienen 0 por defecto
+le podemos poner un width: max-content;
+
+flex-grow indica como un elemento tiene que crecer, si le pongo 0 no puede crecer, si le pongo 1 crecen en relacion 1, si hace un salto de linea ocupara todo el espacio de la segunda linea
+
+
+
+*/

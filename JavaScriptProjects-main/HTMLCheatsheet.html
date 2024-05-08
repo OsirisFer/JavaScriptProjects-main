@@ -5,9 +5,10 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Prueba de RIA</title>
+    <link rel="stylesheet" type="text/css" href="CheatSheetCss.css">
 </head>
 <body>
-    <h1>Titulo del documento</h1>
+    <h1>Cheat Sheet de HTML</h1>
     <h2>Titulo de seccion 1</h2>
     <h3>Titulo de subseccion</h3>
     <!-- Siempre poner el alt en img para poner texto alternativo -->
@@ -68,5 +69,80 @@
         <dt>audio</dt>
         <dd>para insertar contenido de audio</dd>
     </dl>
+    <dl>
+		<dt>picture</dt>
+		<dd>Contenedor usado para especificar múltiples elementos source ( pueden ser imágenes o video) y un elemento img contenido en él para proveer versiones de una imágen para diferentes escenarios de dispositivos por tamaño o lo que fuere, siendo la img el escenario en caso de que fallen los sources</dd>
+
+		<dt>audio</dt>
+		<dd>no usar autoplay.</dd>
+
+		<dt>iframe</dt>
+		<dd>contexto de navegacion anidado, el cual permite incrustrar otra pagina de html</dd>
+<iframe id="inlineFrameExample"
+    title="Inline Frame Example"
+    width="300"
+    height="200"
+    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+</iframe>
+<!-- Las Clases están para poner que un elemento es de un determinado tipo, pero cuando un elemento es de un determinado tipo
+se espera de que tenga sub-elementos adentro.
+Desde CSS podemos hacer cambios en SVG.
+
+Como incluir estilos: 
+-Con el atributo style en el componente html (NO USAR)
+-Con la etiqueta <style></style> poniendo el contenido dentro del html (USAR SOLO PARA PAGINAS SIMPLES)
+-Hoja de estilo externa (USAR ESTA FORMA)
+	-Con el elemento link <link  rel="sylesheet" href=""> (MÁS USADO)
+	-Regla at(@) haciendo @import  url("") 
+	-a traves de las cabeceras HTTP 
+-->
+<div>HOLAAAAAAAAAAAAAAA</div>
+<form action="peteco.html" target="_self" method="GET" autocomplete="" novalidate="">
+    <label for="hola">Nombre:</label><input type="text" name="hola">
+    <input type="password" name="">
+    <input type="email" name="">
+    <input type="color" name="">
+    <input type="date" name="">
+    <input type="checkbox" name="">
+    <input type="radio" name="">
+    <input type="reset" name="">
+    <input type="submit" name="">
+</form>
+    <ol>
+        <li>primero</li>
+        <li>segundo</li>
+        <li>tercero</li>
+        <li>cuarto</li>
+        <li>quinto</li>
+        <button>hola</button>
+        <p>pe</p>
+    </ol>
+
+    <!-- <p class="especial marco peteco">Crear bla bla bla</p> -->
+	<div class="div2"></div>
+	<div class="div1"></div>
+	<div class="div3"></div>
+	<div class="div4"></div>
+
+    <figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+	<figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+	<figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+	<figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+
+    <div id="holi"></div>
+
+    <div class="primer">1</div>
+	<div class="segundo">2</div>
+	<div class="tercero">3</div>
+	<div class="cuarto">4</div>
+
 </body>
 </html>
