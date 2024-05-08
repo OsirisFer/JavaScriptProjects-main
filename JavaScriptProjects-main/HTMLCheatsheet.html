@@ -6,97 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Prueba de RIA</title>
     <link rel="stylesheet" type="text/css" href="CheatSheetCss.css">
+    <script src="PruebaPrueba.js"></script>
 </head>
 <body>
-    <h1>Cheat Sheet de HTML</h1>
-    <h2>Titulo de seccion 1</h2>
-    <h3>Titulo de subseccion</h3>
-    <!-- Siempre poner el alt en img para poner texto alternativo -->
-    <p>Parrafo <img src="" alt="Hola"></p>
-    <h2>Titulo de seccion 2</h2>
-    <ul>
-        <li>item 1</li>
-    </ul> 
-    <p>Otro tipo de lista</p>
-    <ol>
-        <li>item 1</li>
-    </ol>
-    <p>Lista de definicion</p>
-    <dl>
-        <dt>HTML</dt>
-        <dd>Lenguaje de marcado de hipertexto</dd>
-    </dl>
-    <H2>AGRUPADORES</H2>
-    <dl>
-        <dt>div</dt>
-        <dd><div>Agrupador de contenido de toda indole, semanticamente no significa nada, es un bloque que contiene cosas</div></dd>
-        <dt>span</dt>
-        <dd><span>Agrupador en linea, semanticamente es igual que el div, solo que el div es de bloque y el span es inline </span></dd>
-        <H2> AGRUPADORES ESPECIALIZADOS</H2>
-        <dt>main</dt>
-        <dd>Agrupador especializado que indica el contenido principal</dd>
-        <dt>aside</dt>
-        <dd>Contenido que va aparte, referencia aparte, contenido bueno de ver que se despega del contenido principal</dd>
-        <dt>header</dt>
-        <dd>Para hacer las cabeceras de articulo, pagina, etc</dd>
-        <dt>footer</dt>
-        <dd>Pie de pagina, pie de contenido</dd>
-        <dt>nav</dt>
-        <dd>Normalmente va adentro de los footer y los header, es la navegacion del sitio, por ejemplo podria ser una lista ordenada dentro de un nav lo cual le indica al user agent que es para navegar al docuemnto o afuera de el</dd>
-    </dl>
-    <dl>
-        <dt>link</dt>
-        <dd>Se usa para relaciones entre documentos, por lo general para traer hojas de estilo desde afuera, son hyperlinks que sirven para que el usuario vaya de una pagina a otra, el href brinda la URI, el atributo rel especifica la relacion entre el documento y el link pudiendo ser este stylesheet(hoja de estilo), prefetch que vaya descargando eso de antemano, entre otros. El atributo media es para especificar el dispositrivo donde se mostrara </dd>
-        <!-- <link rel="stylesheet" type="text/css" href=""> --> 
-        <dt>code</dt>
-        <dd>para marcar codigo de un programa, funciona con la eitqueta de preformateado generalmente para respetar espaciado cambio de linea etc <code> if(true)</code></dd>
-        <dt>data</dt>
-        <dd>vincula un contenido dado con una traduccion legible por una maquina, esto es puramente semantico y no va a renderizarse de ninguna forma, value es a modo id<data value="123">valor</data></dd>
-        <dt>kbd</dt>
-        <dd>marca el texto que debe introducir el usuario <kbd>por ejemplo deberia introducir esto</kbd></dd>
-        <dt>figure</dt>
-        <dd> es un elemento de bloque que se usa para imagenes con descrpcion la cual se puede agregar con figcaption, presentacionalmente solo hace salto de linea y pone sangria, figure es en bloque y img es en linea, con</dd>
-        <!-- <figure><img src="pato-.jpg"><figcaption>Descripcion</figcaption></figure> -->
-        <dt>details</dt>
-        <dd>spoiler o detalles expandidos de lo que queriamos hablar, con summary adentro seleccionamos la parte visible que tiene el popup <details><summary>Este es el popup</summary><p>Este es el gran spoiler<p></details></dd>
-        <dt>dialog</dt>
-        <dd>dialogo de texto o alerta, es como una ventana emergente, si le pongo el atributo open aparece</dd>
-        <!-- <dialog open> hola </dialog> -->
-        <dt>video</dt>
-        <dd>para incrustar videos en un documento html, solo no hace nada, precisa de sus atributos que traen el contenido como src, o controls para que aparezcan los controles, autoplay, etc.</dd>
-        <video src="https://www.youtube.com/watch?v=f3dDVtJ2sec&ab_channel=TiagoForte" controls></video>
-        <!-- NO TODOS LOS FORMATOS SON ABIERTOS Y COMPATIBLES, EL WEBM ES EL ESTANDAR Y EL OGG ESTA BUENO DE USAR TAMBIEN -->
-        <dt>audio</dt>
-        <dd>para insertar contenido de audio</dd>
-    </dl>
-    <dl>
-		<dt>picture</dt>
-		<dd>Contenedor usado para especificar múltiples elementos source ( pueden ser imágenes o video) y un elemento img contenido en él para proveer versiones de una imágen para diferentes escenarios de dispositivos por tamaño o lo que fuere, siendo la img el escenario en caso de que fallen los sources</dd>
 
-		<dt>audio</dt>
-		<dd>no usar autoplay.</dd>
 
-		<dt>iframe</dt>
-		<dd>contexto de navegacion anidado, el cual permite incrustrar otra pagina de html</dd>
-<iframe id="inlineFrameExample"
-    title="Inline Frame Example"
-    width="300"
-    height="200"
-    src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
-</iframe>
-<!-- Las Clases están para poner que un elemento es de un determinado tipo, pero cuando un elemento es de un determinado tipo
-se espera de que tenga sub-elementos adentro.
-Desde CSS podemos hacer cambios en SVG.
+    <div id="contenido-paginado">
+        <div class="pagina" id="pagina1">
+            <H2>AGRUPADORES</H2>
+            <dl>
+                <dt>div</dt>
+                <dd><div class="divprimero">Agrupador de contenido de toda indole, semanticamente no significa nada, es un bloque que contiene cosas</div></dd>
+                <dt>span</dt>
+                <dd><span>Agrupador en linea, semanticamente es igual que el div, solo que el div es de bloque y el span es inline </span></dd>
+                <H2> AGRUPADORES ESPECIALIZADOS</H2>
+                <dt>main</dt>
+                <dd>Agrupador especializado que indica el contenido principal</dd>
+                <dt>aside</dt>
+                <dd>Contenido que va aparte, referencia aparte, contenido bueno de ver que se despega del contenido principal</dd>
+                <dt>header</dt>
+                <dd>Para hacer las cabeceras de articulo, pagina, etc</dd>
+                <dt>footer</dt>
+                <dd>Pie de pagina, pie de contenido</dd>
+                <dt>nav</dt>
+                <dd>Normalmente va adentro de los footer y los header, es la navegacion del sitio, por ejemplo podria ser una lista ordenada dentro de un nav lo cual le indica al user agent que es para navegar al docuemnto o afuera de el</dd>
+            </dl>
+            <dl>
+                <dt>link</dt>
+                <dd>Se usa para relaciones entre documentos, por lo general para traer hojas de estilo desde afuera, son hyperlinks que sirven para que el usuario vaya de una pagina a otra, el href brinda la URI, el atributo rel especifica la relacion entre el documento y el link pudiendo ser este stylesheet(hoja de estilo), prefetch que vaya descargando eso de antemano, entre otros. El atributo media es para especificar el dispositrivo donde se mostrara </dd>
+                <!-- <link rel="stylesheet" type="text/css" href=""> --> 
+                <dt>code</dt>
+                <dd>para marcar codigo de un programa, funciona con la eitqueta de preformateado generalmente para respetar espaciado cambio de linea etc <code> if(true)</code></dd>
+                <dt>data</dt>
+                <dd>vincula un contenido dado con una traduccion legible por una maquina, esto es puramente semantico y no va a renderizarse de ninguna forma, value es a modo id<data value="123">valor</data></dd>
+                <dt>kbd</dt>
+                <dd>marca el texto que debe introducir el usuario <kbd>por ejemplo deberia introducir esto</kbd></dd>
+                <dt>figure</dt>
+                <dd> es un elemento de bloque que se usa para imagenes con descrpcion la cual se puede agregar con figcaption, presentacionalmente solo hace salto de linea y pone sangria, figure es en bloque y img es en linea, con</dd>
+                <!-- <figure><img src="pato-.jpg"><figcaption>Descripcion</figcaption></figure> -->
+                <dt>details</dt>
+                <dd>spoiler o detalles expandidos de lo que queriamos hablar, con summary adentro seleccionamos la parte visible que tiene el popup <details><summary>Este es el popup</summary><p>Este es el gran spoiler<p></details></dd>
+                <dt>dialog</dt>
+                <dd>dialogo de texto o alerta, es como una ventana emergente, si le pongo el atributo open aparece</dd>
+                <!-- <dialog open> hola </dialog> -->
+                <dt>video</dt>
+                <dd>para incrustar videos en un documento html, solo no hace nada, precisa de sus atributos que traen el contenido como src, o controls para que aparezcan los controles, autoplay, etc.</dd>
+                <video src="https://www.youtube.com/watch?v=f3dDVtJ2sec&ab_channel=TiagoForte" controls></video>
+                <!-- NO TODOS LOS FORMATOS SON ABIERTOS Y COMPATIBLES, EL WEBM ES EL ESTANDAR Y EL OGG ESTA BUENO DE USAR TAMBIEN -->
+                <dt>audio</dt>
+                <dd>para insertar contenido de audio</dd>
+            </dl>
+            <dl>
+                <dt>picture</dt>
+                <dd>Contenedor usado para especificar múltiples elementos source ( pueden ser imágenes o video) y un elemento img contenido en él para proveer versiones de una imágen para diferentes escenarios de dispositivos por tamaño o lo que fuere, siendo la img el escenario en caso de que fallen los sources</dd>
+        
+                <dt>audio</dt>
+                <dd>no usar autoplay.</dd>
+        
+                <dt>iframe</dt>
+                <dd>contexto de navegacion anidado, el cual permite incrustrar otra pagina de html</dd>
+        <iframe id="inlineFrameExample"
+            title="Inline Frame Example"
+            width="300"
+            height="200"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+        </iframe>
 
-Como incluir estilos: 
--Con el atributo style en el componente html (NO USAR)
--Con la etiqueta <style></style> poniendo el contenido dentro del html (USAR SOLO PARA PAGINAS SIMPLES)
--Hoja de estilo externa (USAR ESTA FORMA)
-	-Con el elemento link <link  rel="sylesheet" href=""> (MÁS USADO)
-	-Regla at(@) haciendo @import  url("") 
-	-a traves de las cabeceras HTTP 
--->
-<div>HOLAAAAAAAAAAAAAAA</div>
+        </div>
+        <div class="pagina" id="pagina2" style="display: none;">
+            <div>HOLAAAAAAAAAAAAAAA</div>
 <form action="peteco.html" target="_self" method="GET" autocomplete="" novalidate="">
     <label for="hola">Nombre:</label><input type="text" name="hola">
     <input type="password" name="">
@@ -136,13 +114,39 @@ Como incluir estilos:
 	<figure>
 		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
 	</figure>
-
-    <div id="holi"></div>
+        </div>
+        <div class="pagina" id="pagina3" style="display: none;">
+            <div id="holi"></div>
 
     <div class="primer">1</div>
 	<div class="segundo">2</div>
 	<div class="tercero">3</div>
 	<div class="cuarto">4</div>
 
+        </div>
+        <div id="botones-paginacion">
+            <button onclick="mostrarPagina(1)">1</button>
+            <button onclick="mostrarPagina(2)">2</button>
+            <button onclick="mostrarPagina(3)">3</button>
+        </div>
+
+    
+   
+    
+<!-- Las Clases están para poner que un elemento es de un determinado tipo, pero cuando un elemento es de un determinado tipo
+se espera de que tenga sub-elementos adentro.
+Desde CSS podemos hacer cambios en SVG.
+
+Como incluir estilos: 
+-Con el atributo style en el componente html (NO USAR)
+-Con la etiqueta <style></style> poniendo el contenido dentro del html (USAR SOLO PARA PAGINAS SIMPLES)
+-Hoja de estilo externa (USAR ESTA FORMA)
+	-Con el elemento link <link  rel="sylesheet" href=""> (MÁS USADO)
+	-Regla at(@) haciendo @import  url("") 
+	-a traves de las cabeceras HTTP 
+-->
+
+
+    
 </body>
 </html>

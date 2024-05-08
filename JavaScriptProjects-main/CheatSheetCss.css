@@ -1,4 +1,4 @@
-div {
+divprimero {
 	color: red; /*color del elemento en si*/
 	background-color: green; /*color del fondo*/
 	margin: 2rem; /*margen externo*/ 
@@ -8,16 +8,37 @@ div {
 	font-size: 10px;
 }
 
-:root {
+
+
+
+/* div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--size);
+    height: var(--size);
+    margin: 1em;
+    counter-increment: divs;
+}
+div::before{
+    content: counter(divs);
+} */
+
+/* :root {
     --margen: 5px;
     --cantidad:5;
     --alineamiento: left;
-}
-*{
+} */
+
+  /* :root{ aplica a los html
+        --size: 100px;
+        counter-reset: divs;
+    } */
+/* *{ aplica a todos los elementos
     margin:0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 figure{
     border: solid 1px #666;
     padding: 1rem;
@@ -71,55 +92,35 @@ figure img{
     	margin: 2em auto;
     }
 
-    :root{
-        --size: 100px;
-        counter-reset: divs;
-    }
-    html, body, div{
+  
+    /* html, body, div{
         margin:0;
         padding:0;
         box-sizing: border-box;
-    }
-    div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: var(--size);
-        height: var(--size);
-        margin: 1em;
-        counter-increment: divs;
-    }
-    div::before{
-        content: counter(divs);
-    }
-    div:nth-child(1){background: red}
-    div:nth-child(2){background: blue}
-    div:nth-child(3){background: green}
-    div:nth-child(4){background: yellow}
+    } */
+  
+/* div:nth-child(1){background: red}
+div:nth-child(2){background: blue}
+div:nth-child(3){background: green}
+div:nth-child(4){background: yellow} */
 
-    #holi{
-        /*position: static;
-        position: relative;
-        position: absolute;
-        position: fixed;
-        position: sticky;*/
-        position: sticky;
-    }
-    body{
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: flex-start;
-        align-content: center;
-        width: 1000px;
-        height: 1000px;
+#holi{
+    /*position: static;
+    position: relative;
+    position: absolute;
+    position: fixed;
+    position: sticky;*/
+    position: sticky;
 }
+/* body{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-content: center;
+    width: 1000px;
+    height: 1000px;
+} */
 
-div{
-
-    width: 100px;
-    height: 100px;
-    margin: 1em;
-}
 
 .primer{background: red}
 .segundo{background: blue}
