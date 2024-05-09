@@ -134,6 +134,63 @@
     <p>typeof es un operador en JavaScript que se utiliza para obtener el tipo de datos de una variable o expresión. <code>let x = 10;<br>
         console.log(typeof x); // "number"</code></p>
     
+        <h1>Typecasting en JavaScript</h1>
+
+        <h2>Conversión implícita</h2>
+        <p>JavaScript realiza conversiones implícitas de tipos cuando se realiza una operación entre tipos de datos diferentes. Por ejemplo:</p>
+        <code>let x = 10 + "20"; // x es "1020" (string)</code><br>
+        <code>let y = "10" - 5; // y es 5 (number)</code>
+    
+        <h2>Conversión explícita</h2>
+        <p>Se puede realizar conversión explícita utilizando funciones o operadores específicos:</p>
+        <ul>
+            <li><code>parseInt()</code> y <code>parseFloat()</code>: Convierten una cadena a un número entero o decimal, respectivamente.  <code>let num1 = parseInt("10"); // num1 es 10</code>  <code>let num2 = parseFloat("10.5"); // num2 es 10.5</code></li>
+            <li><code>String()</code>: Convierte un valor a una cadena de texto.</li>
+            <li><code>Number()</code>: Convierte un valor a un número.</li>
+            <li><code>Boolean()</code>: Convierte un valor a un booleano.</li>
+        </ul>
+    <h2>Type Coercion</h2>
+    <p>La coerción de tipos es la conversión automática o implícita de valores de un tipo de datos a otro. JavaScript es un lenguaje de tipado débil y dinámico, lo que significa que los tipos de datos se convierten automáticamente según sea necesario durante la ejecución del programa. Puede convertir automáticamente los valores de un tipo a otro según sea necesario para completar una operación. Por ejemplo, en una operación de suma donde uno de los operandos es una cadena, JavaScript convertirá el otro operando a cadena y concatenará las cadenas en lugar de sumar los números.</p>  
+    <h1>Arrays, Mapas y Conjuntos en JavaScript</h1>
+
+    <h2>Array</h2>
+    <p>Un array es una estructura de datos que se utiliza para almacenar una colección de elementos. Puedes inicializar un array con elementos predefinidos o crear un array vacío y agregar elementos a él dinámicamente.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let numeros = [1, 2, 3, 4, 5];</code></pre>
+
+    <h2>Map</h2>
+    <p>El objeto Map es una estructura de datos que almacena pares clave-valor y mantiene el orden de inserción de las claves. Las claves de un mapa pueden ser de cualquier tipo, incluidos objetos y valores primitivos.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let mapa = new Map();<br>mapa.set("clave1", "valor1");<br>mapa.set("clave2", "valor2");</code></pre>
+
+    <h2>Set</h2>
+    <p>El objeto Set es una estructura de datos que almacena valores únicos de cualquier tipo. Los valores en un conjunto son únicos, lo que significa que no puede haber duplicados en el conjunto.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let conjunto = new Set();<br>conjunto.add("a");<br>conjunto.add("b");<br>conjunto.add("a"); // "a" ya existe en el conjunto</code></pre>  
+    <h2>WeakMap</h2>
+    <p>El objeto WeakMap es una colección de pares clave/valor en la que las claves son objetos y los valores pueden ser de cualquier tipo. A diferencia de un Map estándar, las claves en un WeakMap son débiles (weak), lo que significa que no evitan que los objetos utilizados como claves sean eliminados por el recolector de basura si no hay otras referencias a ellos fuera del WeakMap.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let weakMap = new WeakMap();<br>let key = {};<br>weakMap.set(key, "value");</code></pre>
+    <p>Lo que hacen estos weakmap y weakset es que pueden ser borrados por el garbage collector cuando ya no son accesibles o referenciados por ninguna parte del código<br><b>Ejemplo con Weakmap vs Map</b><br><code> john = { name: "John" };<br>
+        let weakMap = new WeakMap();<br>
+        weakMap.set(john, "...");<br>
+        john = null; // overwrite the reference<br>
+        // john is removed from memory!<br>
+        <br>
+        let john = { name: "John" };<br>
+        let array = [ john ];<br>
+        john = null; // overwrite the reference<br>
+        // the object previously referenced by john is stored inside the array<br>
+        // therefore it won't be garbage-collected<br>
+        // we can get it as array[0]</code></p>
+
+    <h2>WeakSet</h2>
+    <p>El objeto WeakSet es una colección de objetos. A diferencia de Set, los objetos en un WeakSet son débiles (weak), lo que significa que si no hay otras referencias a un objeto almacenado en un WeakSet, el recolector de basura puede eliminar el objeto de la memoria.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let weakSet = new WeakSet();<br>let obj = {};<br>weakSet.add(obj);</code></pre>
+
+
+
     </div>
         <div class="pagina" id="pagina2" style="display: none;">
             <h1>HTML CHEATSHEET</h1>
