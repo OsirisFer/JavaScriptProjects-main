@@ -13,27 +13,128 @@
 
     <div id="contenido-paginado">
         <div class="pagina" id="pagina1">
-            <h1>JS CHEATSHEET</h1>
-            <p>
-                var declarada dentro de una función es local a esa función, por lo que no puede ser accedidas desde fuera de ella<br>
-                var declarada fuera de una función son globales, por lo que puede ser accedida desde cualquier parte del código<br>
-                let y const si se declaran en un bloque de código, solo pueden ser accedidas dentro de ese bloque (if, for, while, etc)<br><br>
-                Hoisting lo que hace es que las variables y constantes suben al inicio del código, entonces existen para el compilador pero<br>
-                pero no con su valor asignado, por lo que si se intenta acceder a ellas antes de ser declaradas, se obtendrá un valor undefined<br>
-                <code>console.log(x);</code> // Output: <code>undefined</code><br>
-                <code>var x = 5;</code><br>
-                <code>console.log(x);</code> // Output: <code>5</code><br><br>
-                Usar camelCase para nombrar variables y constantes ej: hoistedVariable son case-sensitive asó que hoistedvariable no es lo mismo<br>
-            
-            
-            
-            
-            
-            
-            </p>
+        <h1>JS CHEATSHEET</h1>
+        <p>
+            var declarada dentro de una función es local a esa función, por lo que no puede ser accedidas desde fuera de ella<br>
+            var declarada fuera de una función son globales, por lo que puede ser accedida desde cualquier parte del código<br>
+            let y const si se declaran en un bloque de código, solo pueden ser accedidas dentro de ese bloque (if, for, while, etc)<br><br>
+            Hoisting lo que hace es que las variables y constantes suben al inicio del código, entonces existen para el compilador pero<br>
+            pero no con su valor asignado, por lo que si se intenta acceder a ellas antes de ser declaradas, se obtendrá un valor undefined<br>
+            <code>console.log(x);</code> // Output: <code>undefined</code><br>
+            <code>var x = 5;</code><br>
+            <code>console.log(x);</code> // Output: <code>5</code><br><br>
+            Usar camelCase para nombrar variables y constantes ej: hoistedVariable son case-sensitive asó que hoistedvariable no es lo mismo<br>
+        </p>
+        <h2>Tipos de Datos en JavaScript</h2>
+    <ul>
+        <li>Number: Representa enteros y números de punto flotante. Ejemplo: <code><strong>let num = 10;</strong></code></li>
+        <li>String: Representa texto. Ejemplo: <code><strong>let texto = "Hola";</strong></code></li>
+        <li>Boolean: Representa valores lógicos verdadero/falso. Ejemplo: <code><strong>let esVerdadero = true;</strong></code></li>
+        <li>Undefined: guarda el valor undefined. Ejemplo: <code><strong>let indefinido;</strong></code></li>
+        <li>Null: guarda el valor null. Ejemplo: <code><strong>let nulo = null;</strong></code></li>
+        <li>Object: Representa un objeto. Ejemplo: <code><strong>let persona = { nombre: "Juan", edad: 30 };</strong></code></li>
+        <li>Symbol:  Introducido en ES6, representa un identificador único e inmutable. Se utiliza para crear propiedades de objetos que son únicas y no colisionan con otras propiedades.. Ejemplo: <code><strong>const simboloId = Symbol('id');</strong></code></li>
+        <li>BigInt: Representa números enteros grandes. Ejemplo: <code><strong>let bigNum = 9007199254740991n;</strong></code></li>
+    </ul>
+    <h2>Creación de objetos:</h2>
+    <p>
+        <code>
+            let persona = {
+                nombre: "Juan",
+                edad: 30,
+                casado: false
+            };
+        </code>
+    </p>
+    <p>Un objeto en JavaScript es una colección de pares clave-valor. En este ejemplo, se crea un objeto llamado <code>persona</code> con tres propiedades: <code>nombre</code>, <code>edad</code> y <code>casado</code>.</p>
+    <h2>Acceso a las propiedades:</h2>
+    <p>
+        <code>
+            console.log(persona.nombre); // Juan
+            <br>
+            console.log(persona['edad']); // 30
+        </code>
+    </p>
+    <p>Las propiedades de un objeto se pueden acceder utilizando la notación de punto o la notación de corchetes.</p>
+    <h2>Métodos de los objetos:</h2>
+    <p>
+        <code>
+            let persona = {
+                nombre: "Juan",
+                edad: 30,
+                casado: false,
+                saludar: function() {
+                    console.log("Hola, mi nombre es " + this.nombre);
+                }
+            };
+            <br>
+            persona.saludar(); // Hola, mi nombre es Juan
+        </code>
+    </p>
+    <p>Los objetos en JavaScript pueden contener métodos, que son funciones asociadas al objeto. En este ejemplo, <code>saludar</code> es un método de <code>persona</code> que imprime un saludo.</p>
+    <h2>Herencia de objetos:</h2>
+    <p>
+        <code>
+            function Animal(nombre) {
+                this.nombre = nombre;
+            }
+            Animal.prototype.saludar = function() {
+                console.log("Hola, soy un " + this.nombre);
+            };
+            <br>
+            let perro = new Animal("Perro");
+            <br>
+            perro.saludar(); // Hola, soy un Perro
+        </code>
+    </p>
+    <p>Los objetos en JavaScript pueden heredar propiedades y métodos de otros objetos a través del prototipo. En este ejemplo, se define un constructor <code>Animal</code> con un método <code>saludar</code> que es heredado por el objeto <code>perro</code>.
+        Cuando intentas acceder a una propiedad de un objeto, JavaScript primero busca esa propiedad en el objeto mismo. Si no la encuentra, busca en el prototipo del objeto y luego en el prototipo del prototipo, y así sucesivamente hasta llegar al prototipo null.
+    <br> Ejemplo cuando hago <code>Animal.prototype.nombreAnimal = function() {
+        console.log("Hola, soy " + this.nombreAnimal);
+    };</code><br>
+        Lo que hago es cargarle al prototipo al animal el metodo no al objeto animal directamente. Ahorrando memoria porque evito duplicar metodos por cada instancia de animal. </p>
+        <h2>Objetos integrados en JavaScript</h2>
 
-
-        </div>
+    <ul>
+        <li><strong>Object:</strong> El objeto base de JavaScript que tiene métodos y propiedades comunes a todos los objetos.
+            <code>let persona = { nombre: 'Juan', edad: 30 };</code>
+        </li>
+        <li><strong>Array:</strong> Utilizado para almacenar colecciones de elementos en una secuencia indexada.
+            <code>let numeros = [1, 2, 3, 4, 5];</code>
+        </li>
+        <li><strong>String:</strong> Utilizado para manipular cadenas de texto.
+            <code>let mensaje = 'Hola, mundo!';</code>
+        </li>
+        <li><strong>Number:</strong> Utilizado para valores numéricos y operaciones matemáticas.
+            <code>let edad = 30;</code>
+        </li>
+        <li><strong>Boolean:</strong> Representa un valor lógico verdadero o falso.
+            <code>let esMayor = true;</code>
+        </li>
+        <li><strong>Function:</strong> Utilizado para definir funciones.
+            <code>function saludar(nombre) { console.log('Hola, ' + nombre); }</code>
+        </li>
+        <li><strong>Date:</strong> Utilizado para trabajar con fechas y horas.
+            <code>let fecha = new Date();</code>
+        </li>
+        <li><strong>RegExp:</strong> Utilizado para trabajar con expresiones regulares.
+            <code>let expresionRegular = /[a-z]+/;</code>
+        </li>
+        <li><strong>Error:</strong> Utilizado para representar errores en tiempo de ejecución.
+            <code>throw new Error('Este es un error personalizado');</code>
+        </li>
+        <li><strong>Math:</strong> Proporciona métodos y constantes matemáticas útiles.
+            <code>let raizCuadrada = Math.sqrt(16);</code>
+        </li>
+        <li><strong>JSON:</strong> Utilizado para trabajar con el formato de intercambio de datos JSON.
+            <code>let personaJSON = '{"nombre": "Juan", "edad": 30}';</code>
+        </li>
+    </ul> 
+    <h2>Typeof</h2>
+    <p>typeof es un operador en JavaScript que se utiliza para obtener el tipo de datos de una variable o expresión. <code>let x = 10;<br>
+        console.log(typeof x); // "number"</code></p>
+    
+    </div>
         <div class="pagina" id="pagina2" style="display: none;">
             <h1>HTML CHEATSHEET</h1>
             <H2>AGRUPADORES</H2>
