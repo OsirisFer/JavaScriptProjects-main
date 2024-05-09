@@ -127,7 +127,11 @@
             <code>let raizCuadrada = Math.sqrt(16);</code>
         </li>
         <li><strong>JSON:</strong> Utilizado para trabajar con el formato de intercambio de datos JSON.
-            <code>let personaJSON = '{"nombre": "Juan", "edad": 30}';</code>
+            <code>let personaJSON = '{"nombre": "Juan", "edad": 30}';</code>;<br>
+            Puedes convertir un objeto JavaScript a una cadena JSON utilizando el método JSON.stringify():
+            <code>persona = { nombre: "Juan", edad: 30 };<br>
+            let personaJSON = JSON.stringify(persona);<br>
+            console.log(personaJSON); // '{"nombre":"Juan","edad":30}'</code> 
         </li>
     </ul> 
     <h2>Typeof</h2>
@@ -158,6 +162,11 @@
     <p>Ejemplo:</p>
     <pre><code>let numeros = [1, 2, 3, 4, 5];</code></pre>
 
+    <h2>TypedArray</h2>
+    <p>TypedArray es un tipo especial de array en JavaScript que proporciona un mecanismo eficiente para trabajar con datos binarios y de tipo específico. A diferencia de los arrays normales, los TypedArray están diseñados para contener elementos de un tipo específico y se utilizan principalmente en operaciones que requieren un acceso rápido a los datos binarios.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let numeros = new Uint8Array([1, 2, 3, 4, 5]);</code></pre>
+
     <h2>Map</h2>
     <p>El objeto Map es una estructura de datos que almacena pares clave-valor y mantiene el orden de inserción de las claves. Las claves de un mapa pueden ser de cualquier tipo, incluidos objetos y valores primitivos.</p>
     <p>Ejemplo:</p>
@@ -183,12 +192,23 @@
         // the object previously referenced by john is stored inside the array<br>
         // therefore it won't be garbage-collected<br>
         // we can get it as array[0]</code></p>
-
     <h2>WeakSet</h2>
     <p>El objeto WeakSet es una colección de objetos. A diferencia de Set, los objetos en un WeakSet son débiles (weak), lo que significa que si no hay otras referencias a un objeto almacenado en un WeakSet, el recolector de basura puede eliminar el objeto de la memoria.</p>
     <p>Ejemplo:</p>
     <pre><code>let weakSet = new WeakSet();<br>let obj = {};<br>weakSet.add(obj);</code></pre>
-
+    <h2>Comparación de Igualdad Débil (<code>==</code>)</h2>
+    <ul>
+        <li>JavaScript intenta convertir ambos valores a un tipo común antes de realizar la comparación.</li>
+        <li>Si los tipos de los dos valores son diferentes, JavaScript intentará convertir uno o ambos valores para que tengan el mismo tipo antes de realizar la comparación.</li>
+        <li>Ejemplo: <code>1 == '1'</code> devuelve <code>true</code> porque JavaScript convierte automáticamente el string <code>'1'</code> en el número <code>1</code> antes de realizar la comparación.</li>
+    </ul>
+    <h2>Comparación de Igualdad Estricta (<code>===</code>)</h2>
+    <ul>
+        <li>En una comparación de igualdad estricta, los valores se comparan sin realizar ninguna conversión de tipo.</li>
+        <li>Los valores solo se consideran iguales si tienen el mismo valor y el mismo tipo de datos.</li>
+        <li>Ejemplo: <code>1 === '1'</code> devuelve <code>false</code> porque los tipos de datos son diferentes (número vs string), incluso si los valores son iguales.</li>
+    </ul>
+    <p>En general, se recomienda utilizar la comparación de igualdad estricta para las condiciones (<code>===</code>) en lugar de la comparación de igualdad débil (<code>==</code>), ya que la igualdad estricta es más predecible y menos propensa a errores debido a las conversiones automáticas de tipo que realiza JavaScript en la igualdad débil.</p>
 
 
     </div>
