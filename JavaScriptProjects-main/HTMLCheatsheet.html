@@ -208,7 +208,91 @@
         <li>Los valores solo se consideran iguales si tienen el mismo valor y el mismo tipo de datos.</li>
         <li>Ejemplo: <code>1 === '1'</code> devuelve <code>false</code> porque los tipos de datos son diferentes (número vs string), incluso si los valores son iguales.</li>
     </ul>
-    <p>En general, se recomienda utilizar la comparación de igualdad estricta para las condiciones (<code>===</code>) en lugar de la comparación de igualdad débil (<code>==</code>), ya que la igualdad estricta es más predecible y menos propensa a errores debido a las conversiones automáticas de tipo que realiza JavaScript en la igualdad débil.</p>
+    <p>En general, se recomienda utilizar la comparación de igualdad estricta (<code>===</code>) en lugar de la comparación de igualdad débil (<code>==</code>), ya que la igualdad estricta es más predecible y menos propensa a errores debido a las conversiones automáticas de tipo que realiza JavaScript en la igualdad débil.</p>
+    <h2>Object.is()</h2>
+    <ul>
+        <li>se utiliza sobre los operadores de igualdad estricta (===) cuando se desea una comparación de igualdad aún más estricta y precisa. Aunque === es generalmente seguro y confiable para comparar valores en JavaScript, tiene algunas peculiaridades que pueden conducir a resultados inesperados en ciertos casos. Object.is() aborda estas peculiaridades al proporcionar una comparación más precisa en los siguientes casos:</li>
+        <li><code>console.log(NaN === NaN);    // false <br>
+        console.log(Object.is(NaN, NaN)); // true</code><br></li>
+        <li><code>console.log(-0 === +0);    // true<br>
+            console.log(Object.is(-0, +0)); // false</code><br>
+        </li>
+    </ul>
+    <h2>For in y For of</h2>
+    <p>For in se utiliza para iterar sobre las propiedades de un objeto. For of se utiliza para iterar sobre los elementos de un objeto iterable como un array o un string.</p>
+    <h2>Ejemplo de uso de break y continue en JavaScript</h2>
+  <p>La palabra clave <code>break</code> se utiliza para salir de un bucle.</p>
+  <pre>
+    <code>
+      for (let i = 0; i &lt; 10; i++) {
+        if (i === 5) {
+          break;
+        }
+        console.log(i);
+      }
+      // Salida: 0 1 2 3 4
+    </code>
+  </pre>
+  <p>La palabra clave <code>continue</code> se utiliza para saltar a la siguiente iteración de un bucle.</p>
+  <pre>
+    <code>
+      for (let i = 0; i &lt; 5; i++) {
+        if (i === 2) {
+          continue;
+        }
+        console.log(i);
+      }
+      // Salida: 0 1 3 4
+    </code>
+  </pre>
+  <h2>Declaraciones Etiquetadas en JavaScript</h2>
+  <p>Las declaraciones etiquetadas te permiten asociar una etiqueta a una declaración para controlar el flujo de ejecución.</p>
+  
+  <h2>Ejemplo de uso:</h2>
+  <pre>
+    <code>
+      outerloop: for (let i = 0; i &lt; 3; i++) {
+        innerloop: for (let j = 0; j &lt; 3; j++) {
+          console.log('i = ' + i + ', j = ' + j);
+          if (i === 1 &amp;&amp; j === 1) {
+            break outerloop;
+          }
+        }
+      }
+    </code>
+  </pre>
+    <p>En este ejemplo, la etiqueta "outerloop" está asociada al bucle exterior y "innerloop" al bucle interior. La declaración <code>break outerloop;</code> hace que se salga del bucle etiquetado como "outerloop", terminando ambos bucles.</p>
+    <h2>Manejo de Excepciones en JavaScript</h2>
+    <p>El manejo de excepciones se utiliza para controlar errores que pueden ocurrir durante la ejecución de un programa, javascript creara un objeto error con dos propiedades nombre y mensaje.</p>
+    <ul>
+        <li><code>try</code>: Define un bloque de código en el que pueden ocurrir errores.</li>
+        <li><code>catch</code>: Define un bloque de código para manejar las excepciones lanzadas en el bloque <code>try</code>.</li>
+        <li><code>finally</code>: Define un bloque de código que se ejecutará siempre, independientemente de si se produce un error o no en el bloque <code>try</code>.</li>
+        <li><code>throw</code>: Lanza una excepción manualmente.</li>
+      </ul>
+    <h2>Ejemplo de uso:</h2>
+    <pre>
+        <code>
+          function validarEdad(edad) {
+            if (edad < 18) {
+              throw new Error("La edad debe ser mayor o igual a 18 años");
+            }
+            return "Puede ingresar";
+          }
+    
+          try {
+            let resultado = validarEdad(16);
+            console.log(resultado);
+          } catch (error) {
+            console.error('Se produjo un error:', error.message);
+          } finally {
+            console.log('Este bloque siempre se ejecuta, independientemente de si se produjo un error o no');
+          }
+        </code>
+      </pre>
+    
+   
+  
 
 
     </div>
