@@ -290,8 +290,37 @@
           }
         </code>
       </pre>
-    
-   
+    <img src="Operadores.png" alt="Operadores JS">
+    <h2>Definición de Funciones</h2>
+    <p>Las declaraciones de funciones en JavaScript se realizan utilizando la palabra clave <code>function</code>. Las funciones también se pueden definir guardando expresiones de función en una variable. Las funciones "arrow" se utilizan comúnmente de esta manera.</p>
+        <h3>Ejemplo:</h3>
+    <pre><code>
+        function saludar(nombre) {
+            return "¡Hola, " + nombre + "!";
+        }
+        let mensaje = saludar("John");
+        console.log(mensaje); // Salida: ¡Hola, John!
+    </code></pre>
+        <h2>Llamando a Funciones</h2>
+    <p>Cuando se define una función, aún no se ejecuta. Para llamar e invocar el código de una función, utiliza el nombre de la función seguido de paréntesis: <code>nombreDeLaFuncion()</code>.</p>
+        <h3>Ejemplo:</h3>
+    <pre><code>
+        function suma(a, b) {
+            return a + b;
+        }
+        let resultado = suma(5, 3);
+        console.log(resultado); // Salida: 8
+    </code></pre>
+    <h2>Default Parameters in JavaScript Functions</h2>
+        <p>Default parameters allow you to specify default values for function parameters in case no argument is passed or if the argument is <code>undefined</code>. This feature was introduced in ECMAScript 6 (ES6).</p>
+        <h2>Example:</h2>
+    <pre><code>
+        function greet(name = "Guest") {
+            console.log("Hello, " + name + "!");
+        }
+        greet();    // Output: Hello, Guest!
+        greet("John"); // Output: Hello, John!
+    </code></pre>
   
 
 
