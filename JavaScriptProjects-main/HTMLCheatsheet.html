@@ -311,17 +311,112 @@
         let resultado = suma(5, 3);
         console.log(resultado); // Salida: 8
     </code></pre>
-    <h2>Default Parameters in JavaScript Functions</h2>
-        <p>Default parameters allow you to specify default values for function parameters in case no argument is passed or if the argument is <code>undefined</code>. This feature was introduced in ECMAScript 6 (ES6).</p>
-        <h2>Example:</h2>
+    <h2>Parámetros Predeterminados en Funciones de JavaScript</h2>
+        <p>Los parámetros predeterminados te permiten especificar valores por defecto para los parámetros de una función en caso de que no se pase ningún argumento o si el argumento es <code>undefined</code>. Esta característica fue introducida en ECMAScript 6 (ES6).</p>
     <pre><code>
-        function greet(name = "Guest") {
-            console.log("Hello, " + name + "!");
+        function saludar(nombre = "Invitado") {
+            console.log("Hola, " + nombre + "!");
         }
-        greet();    // Output: Hello, Guest!
-        greet("John"); // Output: Hello, John!
+        saludar();    // Salida: Hola, Invitado!
+        saludar("Juan"); // Salida: Hola, Juan!
     </code></pre>
-  
+        <p>En el ejemplo anterior, la función <code>saludar</code> tiene un parámetro predeterminado <code>nombre</code> establecido en <code>"Invitado"</code>. Si no se proporciona ningún argumento al llamar a <code>saludar()</code>, utilizará el valor predeterminado. Si se proporciona un argumento, utilizará el valor proporcionado.</p>
+        <h2>Parámetros Rest</h2>
+        <p>Los Rest Parameters en JavaScript permiten a una función aceptar un número variable de argumentos como un array, proporcionando una forma de representar una cantidad indefinida de parámetros como un solo parámetro. Esto es útil cuando queremos que una función acepte un número variable de argumentos sin tener que especificar cada uno de ellos en la definición de la función.</p>
+        <p>La sintaxis de Rest Parameters en JavaScript es utilizar tres puntos (`...`) seguidos del nombre que queremos darle al parámetro que recogerá el resto de los argumentos:</p>
+        <pre><code>
+            function nombreFuncion(parametro1, parametro2, ...restoDeParametros) {
+                // Cuerpo de la función
+            }
+        </code></pre>
+        
+        <p>En este ejemplo, `parametro1` y `parametro2` son parámetros normales de la función, mientras que `restoDeParametros` es el Rest Parameter que recogerá el resto de los argumentos pasados a la función en forma de un array.</p>
+        <h2>Arrow Functions</h2>
+        <p>La sintaxis básica de una Arrow Function es:</p>
+        <pre><code>
+            let miFuncion = (param1, param2) => {
+                // Cuerpo de la función
+            };
+        </code></pre>
+        <p>Si el cuerpo de la función consiste en una sola expresión, puedes omitir las llaves y la palabra <code>return</code>:</p>
+        <pre><code>
+            let cuadrado = (num) => num * num;
+            console.log(cuadrado(5)); // Salida: 25
+        </code></pre>
+        <p>Si la función no tiene parámetros o tiene solo un parámetro, puedes omitir los paréntesis alrededor de los parámetros:</p>
+        <pre><code>
+            let saludar = () => "Hola";
+            console.log(saludar()); // Salida: Hola
+    
+            let duplicar = num => num * 2;
+            console.log(duplicar(3)); // Salida: 6
+        </code></pre>
+        <p>En las Arrow Functions, <code>this</code> se mantiene del contexto léxico circundante:</p>
+        <pre><code>
+            function Persona() {
+                this.edad = 0;
+    
+                setInterval(() => {
+                    this.edad++; // `this` apunta al objeto Persona
+                    console.log(this.edad);
+                }, 1000);
+            }
+    
+            let p = new Persona();
+        </code></pre>
+        <p>Las Arrow Functions no pueden ser utilizadas como constructores para crear objetos y no tienen su propio <code>this</code>.</p>
+        <p><code>() => expression</code></p>
+        <p><code>param => expression</code></p>
+        <p><code>(param) => expression</code></p>
+        <p><code>(param1, paramN) => expression</code></p>
+        
+        <p><code>() => { statements }</code></p>
+        <p><code>param => { statements }</code></p>
+        <p><code>(param1, paramN) => { statements }</code></p>
+        <h2>IIFE en JavaScript</h2>
+        <p>Las IIFE (Immediately Invoked Function Expressions) en JavaScript son funciones que se ejecutan inmediatamente después de ser definidas. Son útiles en situaciones donde necesitas ejecutar una función de forma inmediata y luego descartarla, lo que ayuda a evitar la contaminación del ámbito global y a mantener el código más organizado.</p>
+        <p>Sintaxis básica: 
+            La sintaxis de una IIFE (Immediately Invoked Function Expression) en JavaScript consiste en envolver una función entre paréntesis y luego llamarla inmediatamente añadiendo () al final. Esto hace que la función se ejecute automáticamente tan pronto como se define.</p>
+        <pre><code>
+            (function() {
+            // Código a ejecutar
+            })();
+        </code></pre>        
+        <p>Uso de parámetros</p>
+        <pre><code>
+            (function(param1, param2) {
+            // Código a ejecutar con parámetros
+            })(valor1, valor2);
+        </code></pre>        
+        <p>Evitar la contaminación del ámbito global</p>
+        <pre><code>
+            (function() {
+            var mensaje = "Hola, mundo!";
+            console.log(mensaje);
+            })();
+            // console.log(mensaje); // Esto dará un error porque `mensaje` está fuera de ámbito
+        </code></pre>        
+        <p>Módulos</p>
+        <pre><code>
+            var modulo = (function() {
+            var privadoVariable = "Soy privado";
+            function privadoFuncion() {
+                return "También soy privado";
+            }
+            return {
+                publicoVariable: "Soy público",
+                publicoFuncion: function() {
+                return "También soy público";
+                }
+            };
+            })();
+            console.log(modulo.publicoVariable); // Salida: Soy público
+            console.log(modulo.publicoFuncion()); // Salida: También soy público
+            // console.log(modulo.privadoVariable); // Esto dará un error porque `privadoVariable` es privada
+            // console.log(modulo.privadoFuncion()); // Esto dará un error porque `privadoFuncion` es privada
+        </code></pre>        
+        <p>Las IIFE son una herramienta útil en JavaScript para encapsular código y evitar la contaminación del ámbito global, lo que las hace especialmente útiles en aplicaciones más grandes y complejas.</p>
+
 
 
     </div>
