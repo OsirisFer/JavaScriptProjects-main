@@ -416,7 +416,72 @@
             // console.log(modulo.privadoFuncion()); // Esto dará un error porque `privadoFuncion` es privada
         </code></pre>        
         <p>Las IIFE son una herramienta útil en JavaScript para encapsular código y evitar la contaminación del ámbito global, lo que las hace especialmente útiles en aplicaciones más grandes y complejas.</p>
+        <p>El objeto <code>arguments</code> en JavaScript es una variable local disponible dentro de todas las funciones que proporciona un conjunto de argumentos pasados a la función cuando es llamada. El objeto <code>arguments</code> es similar a un array, pero no tiene todas las funcionalidades de un array (por ejemplo, no tiene métodos como <code>map</code> o <code>forEach</code>).</p>
+            <h2>Acceso a los argumentos</h2>
+        <pre><code>
+            function suma() {
+            let total = 0;
+            for (let i = 0; i &lt; arguments.length; i++) {
+                total += arguments[i];
+            }
+            return total;
+            }
 
+            console.log(suma(1, 2, 3, 4, 5)); // Salida: 15
+        </code></pre>
+        <p>Número de argumentos</p>
+        <pre><code>
+            function numeroDeArgumentos() {
+            return arguments.length;
+            }
+
+            console.log(numeroDeArgumentos(1, 2, 3)); // Salida: 3
+        </code></pre>
+        <p>No es un array real</p>
+        <p>Aunque el objeto <code>arguments</code> se comporta de manera similar a un array, no es un array real y no tiene todos los métodos de un array. Por ejemplo, no puedes utilizar métodos como <code>map</code> o <code>forEach</code> directamente en el objeto <code>arguments</code>.</p>
+        <p>Contexto de ejecución</p>
+        <pre><code>
+            function ejemplo(a, b) {
+            console.log(arguments[0], arguments[1]);
+            a = 10;
+            b = 20;
+            console.log(arguments[0], arguments[1]);
+            }
+            ejemplo(1, 2);
+            // Salida:
+            // 1, 2
+            // 1, 2
+        </code></pre>
+               <p>El objeto <code>arguments</code> puede ser útil cuando necesitas manejar un número variable de argumentos en una función o cuando no sabes de antemano cuántos argumentos serán pasados. Sin embargo, su uso se considera menos común en el desarrollo moderno de JavaScript, ya que existen alternativas más simples y seguras, como el uso de parámetros de función predeterminados o el uso de arrays reales para pasar argumentos.</p>
+        <h2>Call Stack o Pila Llamados</h2>
+        <p>La pila de funciones (Function Stack) en JavaScript se ejecuta de manera secuencial, de arriba hacia abajo. Esto significa que cuando se llama a una función, se añade al principio de la pila (arriba de todo) y se ejecuta antes que las funciones que ya estaban en la pila. Una vez que una función termina su ejecución, se elimina de la pila y el control vuelve a la función que estaba en la parte superior de la pila antes de que se llamara a la función actual. Por ejemplo si una función llama a otra función primero se ejecuta la que se llamó y después que esta termine se vuelve a la original que la llamó.</p>
+        <h2>Recursión</h2>
+        <p> La recursión es un concepto en programación en el que una función se llama a sí misma para resolver un problema. La recursión se utiliza comúnmente en algoritmos que pueden dividirse en subproblemas más pequeños que son similares al problema original. La recursión se compone de dos partes: el caso base y el caso recursivo.</p>
+        <pre><code>
+        var recursionLimit = 0;
+        function r() {
+            recursionLimit++;
+            r();
+        }
+        r();</code></pre>
+        <h2>Closures en JavaScript</h2>
+        <p>Un closure en JavaScript es una función que tiene acceso a variables en su ámbito externo, incluso después de que la función externa haya terminado de ejecutarse. En otras palabras, un closure recuerda el ámbito en el que se creó y puede acceder a las variables de ese ámbito incluso cuando la función se ejecuta en un contexto diferente.</p>
+        <p>Los closures son posibles en JavaScript debido al "lexical scoping", que determina el alcance de las variables en función de la estructura del código fuente. Cuando una función se define dentro de otra función, la función interna forma un closure sobre las variables de la función externa, lo que significa que retiene acceso a esas variables incluso después de que la función externa haya finalizado.</p>
+        <p>Los closures son útiles en muchos escenarios, como para crear funciones que actúan como contadores privados, para encapsular datos privados en módulos, para manejar eventos y devoluciones de llamada, entre otros.</p>
+        <p>En resumen, los closures en JavaScript permiten un manejo más flexible de las variables y el alcance de las funciones, lo que los hace una característica poderosa y versátil del lenguaje.</p>
+    <h3>Ejemplo de Closure:</h3>
+    <pre><code>
+        function contador() {
+            let count = 0;
+            return function() {
+                return ++count;
+            };
+        }
+        let incrementar = contador();
+        console.log(incrementar()); // 1
+        console.log(incrementar()); // 2
+        console.log(incrementar()); // 3
+    </code></pre>
 
 
     </div>
