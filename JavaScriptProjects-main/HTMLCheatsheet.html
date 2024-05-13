@@ -566,6 +566,208 @@
     const nuevaFuncion = saludar.bind(persona);
     console.log(nuevaFuncion(15, 5)); // Hola, mi nombre es Juan y tengo 15 likes y 5 dislikes
     </code></pre>
+    <h2>Asynchronous JavaScript</h2>
+    <p>La programación asíncrona es una técnica que permite que tu programa inicie una tarea potencialmente de larga duración y aún así pueda responder a otros eventos mientras esa tarea se ejecuta, en lugar de tener que esperar hasta que esa tarea haya terminado. Una vez que esa tarea ha terminado, tu programa recibe el resultado.
+        Muchas funciones proporcionadas por los navegadores, especialmente las más interesantes, pueden llevar mucho tiempo y, por lo tanto, son asíncronas. Por ejemplo:
+        Hacer solicitudes HTTP utilizando fetch()<br>
+        Acceder a la cámara o al micrófono de un usuario utilizando getUserMedia()<br>
+        Pedir a un usuario que seleccione archivos utilizando showOpenFilePicker()</p>
+        <p>Hay varias formas de lograr la asincronía en JavaScript:</p>
+            <ol>
+            <li><strong>Callbacks:</strong> Los callbacks son funciones que se pasan como argumentos a otras funciones y se ejecutan después de que se completa una operación asincrónica. Los callbacks son una forma común de trabajar con operaciones asíncronas en JavaScript, pero como pueden llevar a un código anidado y difícil de leer (callback hell) ya no se usan tanto.</li>
+                <pre><code>
+                    function doStep1(init, callback) {
+                        const result = init + 1;
+                        callback(result);
+                      }
+                      
+                      function doStep2(init, callback) {
+                        const result = init + 2;
+                        callback(result);
+                      }
+                      
+                      function doStep3(init, callback) {
+                        const result = init + 3;
+                        callback(result);
+                      }
+                      
+                      function doOperation() {
+                        doStep1(0, (result1) => {
+                          doStep2(result1, (result2) => {
+                            doStep3(result2, (result3) => {
+                              console.log(`result: ${result3}`);
+                            });
+                          });
+                        });
+                      }
+                      
+                      doOperation();
+                </code></pre>
+            </li>            
+            <li><strong>Promesas:</strong> Las promesas representan un valor que puede estar disponible ahora, en el futuro o nunca. Permiten encadenar operaciones asincrónicas de manera más legible y manejar errores de manera más efectiva.
+                <pre><code>
+                    function hacerAlgoAsincrono() {
+                        return new Promise(function(resolve, reject) {
+                            setTimeout(function() {
+                                console.log('Operación asincrónica completada');
+                                resolve();
+                            }, 1000);
+                        });
+                    }    
+                    console.log('Comenzando operación asincrónica');
+                    hacerAlgoAsincrono().then(function() {
+                        console.log('Continuando con el flujo de trabajo');
+                    });
+                </code></pre>
+            </li>            
+            <li><strong>Async/await:</strong> La sintaxis async/await es una forma de escribir código asincrónico de manera síncrona. Permite que una función asíncrona se comporte como una función síncrona al utilizar la palabra clave await para esperar que se resuelva una promesa.
+                <pre><code>
+                    async function hacerAlgoAsincrono() {
+                        return new Promise(function(resolve, reject) {
+                            setTimeout(function() {
+                                console.log('Operación asincrónica completada');
+                                resolve();
+                            }, 1000);
+                        });
+                    }    
+                    console.log('Comenzando operación asincrónica');
+                    async function ejecutar() {
+                        await hacerAlgoAsincrono();
+                        console.log('Continuando con el flujo de trabajo');
+                    }
+                    ejecutar();
+                </code></pre>
+            </li>
+        </ol>        
+        <p>En resumen, JavaScript ofrece varias formas de trabajar de manera asíncrona, lo que es fundamental para construir aplicaciones web interactivas y eficientes. La elección de la técnica adecuada depende del caso de uso específico y de las preferencias de estilo de codificación.</p>
+        <h2>setTimeout y setInterval en JavaScript</h2>
+            <h3>setTimeout</h3>
+        <p>La función <code>setTimeout</code> se utiliza para ejecutar una función o un fragmento de código una vez después de un período de tiempo especificado.</p>
+        <pre><code>setTimeout(function() {
+        console.log('Hola, mundo!');
+    }, 1000); // Ejecutar después de 1 segundo</code></pre>
+                <h3>setInterval</h3>
+        <p>La función <code>setInterval</code> se utiliza para ejecutar una función o un fragmento de código repetidamente cada cierto período de tiempo especificado.</p>
+        <pre><code>setInterval(function() {
+        console.log('Hola, mundo!');
+    }, 1000); // Ejecutar cada 1 segundo</code></pre>
+                <p>Es importante tener en cuenta que tanto <code>setTimeout</code> como <code>setInterval</code> son funciones asíncronas y no detienen la ejecución del resto del código. Además, ambas funciones devuelven un identificador que puede usarse para cancelar la ejecución futura de la función con <code>clearTimeout</code> (para <code>setTimeout</code>) o <code>clearInterval</code> (para <code>setInterval</code>).</p>
+                <h2>XMLHttpRequest y fetch en JavaScript</h2>
+    
+                <h3>XMLHttpRequest (XHR)</h3>
+                <p>XMLHttpRequest es un objeto en JavaScript que proporciona funcionalidades para realizar solicitudes HTTP de forma asíncrona.</p>
+                <pre><code>var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://ejemplo.com/api/data', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send();</code></pre>
+                
+                <h3>fetch API</h3>
+                <p>fetch es una API moderna para realizar solicitudes HTTP que proporciona una interfaz más limpia y promesas para trabajar de manera asíncrona.</p>
+                <pre><code>fetch('https://ejemplo.com/api/data')
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));</code></pre>
+                
+                <h3>Diferencias</h3>
+                <ul>
+                    <li>XMLHttpRequest es compatible con versiones anteriores de navegadores, mientras que fetch es una API moderna.</li>
+                    <li>fetch utiliza promesas, lo que facilita el manejo de las respuestas y el encadenamiento de operaciones.</li>
+                    <li>fetch no envía ni recibe cookies de forma predeterminada, mientras que XMLHttpRequest sí lo hace.</li>
+                    <li>fetch no rechaza la promesa en caso de errores HTTP, mientras que XMLHttpRequest sí lo hace.</li>
+                </ul>
+                <h2>Classes en JavaScript</h2>
+        <h3>Declaración de una clase</h3>
+    <p>Para declarar una clase en JavaScript, utilizamos la palabra clave <code>class</code>, seguida del nombre de la clase. Dentro de la clase, definimos métodos utilizando la sintaxis de funciones normales.</p>
+    <pre><code>class Persona {
+    constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    saludar() {
+        console.log(`Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`);
+    }
+}</code></pre>
+        <h3>Creación de objetos</h3>
+    <p>Para crear un objeto de una clase, utilizamos la palabra clave <code>new</code> seguida del nombre de la clase y los argumentos necesarios para el constructor, si lo tiene.</p>
+    <pre><code>let persona1 = new Persona('Juan', 30);
+let persona2 = new Persona('María', 25);</code></pre>
+        <h3>Herencia</h3>
+    <p>Las clases en JavaScript también admiten la herencia. Para heredar de una clase base, utilizamos la palabra clave <code>extends</code> seguida del nombre de la clase base.</p>
+    <pre><code>class Estudiante extends Persona {
+    constructor(nombre, edad, curso) {
+        super(nombre, edad);
+        this.curso = curso;
+    }
+    estudiar() {
+        console.log(`${this.nombre} está estudiando ${this.curso}.`);
+    }
+}
+let estudiante1 = new Estudiante('Pedro', 20, 'Matemáticas');</code></pre>
+<h2>Iterators y Generators en JavaScript</h2>
+<h3>Iteradores (Iterators)</h3>
+<p>Los iteradores son objetos que permiten recorrer secuencias de datos, como arrays, cadenas (strings) o cualquier objeto con una estructura similar a una colección.</p>
+<pre><code>let arr = [1, 2, 3];
+let iterator = arr[Symbol.iterator]();
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }</code></pre>
+<h3>Generadores (Generators)</h3>
+<p>Los generadores son funciones especiales que pueden ser pausadas y luego reanudadas. Se declaran utilizando la palabra clave <code>function*</code> y utilizan la palabra clave <code>yield</code> para pausar la ejecución y devolver un valor.</p>
+<pre><code>function* generateNumbers() {
+yield 1;
+yield 2;
+yield 3;
+}
+let generator = generateNumbers();
+console.log(generator.next()); // { value: 1, done: false }
+console.log(generator.next()); // { value: 2, done: false }
+console.log(generator.next()); // { value: 3, done: false }
+console.log(generator.next()); // { value: undefined, done: true }</code></pre>
+<p>Los generadores son útiles cuando se necesitan secuencias de valores que pueden ser generados de manera perezosa (lazy) o cuando se necesita un control más fino sobre la generación de valores en una secuencia. Los iteradores y generadores son características poderosas de JavaScript que pueden mejorar la legibilidad y la eficiencia del código cuando se utilizan correctamente.</p>
+<h2>Módulos en JavaScript</h2>
+    
+<h3>Exportar desde un módulo</h3>
+<p>Para exportar variables, funciones o clases desde un módulo, utilizamos la palabra clave <code>export</code>. Podemos exportar elementos individualmente o usar la declaración <code>export default</code> para exportar un elemento por defecto.</p>
+<pre><code>// En el archivo modulo.js
+export const PI = 3.141592;
+export function double(number) {
+return number * 2;
+}
+export default function sayHello(name) {
+console.log(`Hello, ${name}!`);
+}</code></pre>
+
+<h3>Importar en otro módulo</h3>
+<p>Para importar elementos de un módulo en otro, utilizamos la palabra clave <code>import</code>. Podemos importar elementos individualmente o importar todo un módulo con la declaración <code>import * as nombre from 'ruta'</code>.</p>
+<pre><code>// En otro archivo
+import { PI, double } from './modulo.js';
+import sayHello from './modulo.js';
+
+console.log(PI); // 3.141592
+console.log(double(5)); // 10
+sayHello('John'); // Hello, John!</code></pre>
+
+<h3>Exportar e importar todo un módulo</h3>
+<p>También podemos exportar e importar todo un módulo utilizando la declaración <code>export * from 'ruta'</code> para exportar y <code>import * as nombre from 'ruta'</code> para importar.</p>
+<pre><code>// En el archivo modulo.js
+function greet(name) {
+console.log(`Greetings, ${name}!`);
+}
+
+export { greet };</code></pre>
+<pre><code>// En otro archivo
+import * as modulo from './modulo.js';
+
+modulo.greet('Alice'); // Greetings, Alice!</code></pre>
+
+<p>Los módulos en JavaScript nos permiten estructurar nuestro código de manera modular y reutilizable, lo que facilita el mantenimiento y la colaboración en proyectos más grandes. Es importante tener en cuenta que los módulos de JavaScript están estandarizados en ECMAScript 6 (ES6) y son ampliamente compatibles en navegadores modernos y entornos Node.js.</p>
+
+
 
 
 </div>
