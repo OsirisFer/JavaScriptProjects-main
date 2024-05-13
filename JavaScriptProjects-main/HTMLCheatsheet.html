@@ -482,9 +482,93 @@
         console.log(incrementar()); // 2
         console.log(incrementar()); // 3
     </code></pre>
+    <h2>Modo estricto en JavaScript</h2>
+    <p>El "modo estricto" (strict mode) es una característica de JavaScript introducida en ECMAScript 5 que te permite escribir código JavaScript de manera más segura y con mejores prácticas. Cuando se activa el "modo estricto", se hacen algunas restricciones y cambios en el comportamiento normal de JavaScript.</p>
+    <p>Algunas de las características y usos del "modo estricto" incluyen:</p>
+    <ul>
+        <li>Errores y advertencias adicionales.</li>
+        <li>Errores en asignaciones no permitidas.</li>
+        <li>Eliminación de funciones y variables globales implícitas.</li>
+        <li>Restricciones en la sintaxis.</li>
+        <li>Evitar el uso de la declaración <code>with</code>.</li>
+    </ul>
+    <p>En resumen, el "modo estricto" es una herramienta útil para escribir código JavaScript más seguro y robusto, evitando errores comunes y aplicando mejores prácticas de programación. Se recomienda utilizarlo en todos los nuevos proyectos y al actualizar código existente para mejorar su calidad y mantenibilidad.</p>
+    <h2>Keyword "this" en JavaScript</h2>
+    <p>El keyword <code>this</code> en JavaScript se refiere al objeto al que pertenece en un determinado contexto. El valor de <code>this</code> depende de cómo se llama a la función y dónde se encuentra la llamada a la función.</p>
+        <ol>
+        <li><strong>En el contexto global:</strong> <code>this</code> se refiere al objeto global en el navegador (<code>window</code> en un navegador web) o al objeto global en Node.js (<code>global</code> en Node.js).</li>
+                <li><strong>En el contexto de una función:</strong> 
+            <ul>
+                <li>Si se llama a la función como un método de un objeto, <code>this</code> se refiere al objeto que posee el método.</li>
+                <li>Si se llama a la función como una función normal, <code>this</code> se refiere al objeto global (o <code>undefined</code> en modo estricto).</li>
+            </ul>
+            <code>
+                let objeto = {
+                    nombre: 'Juan',
+                    saludar: function() {
+                        console.log('Hola, mi nombre es ' + this.nombre);
+                    }
+                };                
+                objeto.saludar(); // Hola, mi nombre es Juan                
+                let saludarFuncion = objeto.saludar;
+                saludarFuncion(); // TypeError en modo estricto, de lo contrario: Hola, mi nombre es undefined o Hola, mi nombre es [nombre global]
+            </code>
+        </li>        
+        <li><strong>En el contexto de un evento:</strong> <code>this</code> se refiere al elemento en sí en un manejador de eventos en un elemento HTML.</li>
+                <li><strong>En el contexto de una función flecha:</strong> En una función flecha, <code>this</code> se mantiene del ámbito exterior al que pertenece la función flecha, en lugar de ser dinámico como en las funciones regulares.</li>
+        <code>
+            let objeto = {
+                nombre: 'María',
+                saludar: function() {
+                    setTimeout(() => {
+                        console.log('Hola, mi nombre es ' + this.nombre);
+                    }, 1000);
+                }
+            };            
+            objeto.saludar(); // Hola, mi nombre es María después de 1 segundo
+        </code>
+    </ol>    
+    <p>Entender cómo funciona <code>this</code> es importante para evitar errores y utilizarlo correctamente en diferentes situaciones en JavaScript.</p>
+    <p>In an object method, this refers to the object<br>
+        Alone, this refers to the global object<br>
+        In a function, this refers to the global object<br>
+        In a function, in strict mode, this is undefined<br>
+        In an event, this refers to the element that received the event<br>
+        Methods like call(), apply(), and bind() can refer this to any object</p>
+    <h2>Function Borrowing</h2>
+    <p>Fucntion Borrowing consiste en tomar prestada una función de otro objeto y utilizarla en el contexto de un objeto diferente. Esto se puede hacer utilizando los métodos <code>call()</code> y <code>apply()</code> en JavaScript. Es medio controversial "Function borrowing is usually just a workaround for poor initial design."</p>
+    <pre><code>let obj1 = {
+        nombre: 'Juan',
+        saludar: function() {
+            console.log('Hola, mi nombre es ' + this.nombre);
+        }
+    };
+        let obj2 = {
+        nombre: 'María'
+    };
+        obj1.saludar(); // Hola, mi nombre es Juan
+        // Usando la función de obj1 en obj2
+    obj1.saludar.call(obj2); // Hola, mi nombre es María</code></pre>
+    <h2>Explicit Binding</h2>
+    <p>Explicit Binding es una técnica en JavaScript para forzar a una función a utilizar/asociar un objeto específico como su contexto de <code>this</code>. Esto se puede hacer utilizando los métodos <code>call()</code> lo pide separado por comas, <code>apply()</code> lo pide como un arreglo de los parámetros o <code>bind()</code> te crea una función nueva con el contexto nuevo en JavaScript.</p>
+    <pre><code>
+    const persona = {
+        nombre: 'Juan',
+    };
+    const otraPersona = {
+        nombre: 'María'
+    };
+    function saludar(likes, dislikes) {
+        console.log('Hola, mi nombre es ' + this.nombre + y tengo ' + likes + ' likes y ' + dislikes + ' dislikes');
+    }
+    console.log(saludar.call(persona, 10, 5)); // Hola, mi nombre es Juan y tengo 10 likes y 5 dislikes
+    console.log(saludar.apply(otraPersona, [20, 10])); // Hola, mi nombre es María y tengo 20 likes y 10 dislikes
+    const nuevaFuncion = saludar.bind(persona);
+    console.log(nuevaFuncion(15, 5)); // Hola, mi nombre es Juan y tengo 15 likes y 5 dislikes
+    </code></pre>
 
 
-    </div>
+</div>
         <div class="pagina" id="pagina2" style="display: none;">
             <h1>HTML CHEATSHEET</h1>
             <H2>AGRUPADORES</H2>
