@@ -780,13 +780,185 @@ modulo.greet('Alice'); // Greetings, Alice!</code></pre>
     <li><strong>Fragmentos (Snippets):</strong> Permite guardar y ejecutar fragmentos de código JavaScript con facilidad.</li>
 </ol>
 <p>Las Chrome DevTools ofrecen muchas más funciones y herramientas que las mencionadas aquí, pero estas son algunas de las más relevantes para trabajar con JavaScript. Puedes acceder a las Chrome DevTools en Chrome haciendo clic con el botón derecho en cualquier parte de una página web y seleccionando "Inspeccionar" o utilizando el atajo de teclado <code>Ctrl+Shift+I</code> (Windows/Linux) o <code>Cmd+Opt+I</code> (Mac).</p>
+<h1>Explicación de <code>querySelector</code></h1>
+<p>El método <code>querySelector</code> es una función poderosa en JavaScript que se utiliza para seleccionar elementos del DOM (Document Object Model) utilizando selectores CSS. Permite buscar y obtener el primer elemento que coincide con el selector especificado.</p>
+
+<h2>Sintaxis</h2>
+<pre><code>element = document.querySelector(selector);</code></pre>
+
+<h2>Parámetros</h2>
+<ul>
+    <li><code>selector</code>: Un string que representa uno o más selectores CSS que se usan para encontrar el elemento correspondiente en el DOM.</li>
+</ul>
+
+<h2>Ejemplos</h2>
+
+<h3>1. Seleccionar un elemento por su ID</h3>
+<pre><code>var element = document.querySelector("#miId");
+console.log(element); // Devuelve el elemento con id="miId"</code></pre>
+
+<h3>2. Seleccionar un elemento por su clase</h3>
+<pre><code>var element = document.querySelector(".miClase");
+console.log(element); // Devuelve el primer elemento con class="miClase"</code></pre>
+
+<h3>3. Seleccionar un elemento por su etiqueta</h3>
+<pre><code>var element = document.querySelector("p");
+console.log(element); // Devuelve el primer &lt;p&gt; elemento</code></pre>
+
+<h3>4. Seleccionar un elemento usando combinaciones de selectores</h3>
+<pre><code>var element = document.querySelector("div.miClase #miId");
+console.log(element); // Devuelve el elemento con id="miId" que está dentro de un &lt;div&gt; con class="miClase"</code></pre>
+
+<h3>5. Seleccionar un elemento usando atributos</h3>
+<pre><code>var element = document.querySelector("input[type='text']");
+console.log(element); // Devuelve el primer &lt;input&gt; elemento con type="text"</code></pre>
+
+<h2>Consideraciones</h2>
+<p><code>querySelector</code> solo devuelve el primer elemento que coincide con el selector especificado. Si necesitas obtener todos los elementos que coinciden, puedes usar <code>document.querySelectorAll(selector)</code>.</p>
+<h1>Explicación de addEventListener, document, y bundlers</h1>
+
+    <h2>addEventListener</h2>
+    <p><code>addEventListener</code> es un método en JavaScript que permite añadir un evento a un elemento del DOM (Document Object Model). Este método es fundamental para crear interactividad en las páginas web.</p>
+
+    <h3>Sintaxis:</h3>
+    <code>
+        element.addEventListener(event, function, useCapture);
+    </code>
+    <ul>
+        <li><strong>element</strong>: El elemento del DOM al que deseas añadir el evento.</li>
+        <li><strong>event</strong>: El tipo de evento que quieres escuchar (por ejemplo, 'click', 'mouseover', 'keydown', etc.).</li>
+        <li><strong>function</strong>: La función que se ejecutará cuando ocurra el evento.</li>
+        <li><strong>useCapture</strong>: Un booleano opcional que indica si el evento debe ser capturado en la fase de captura (true) o en la fase de burbujeo (false, que es el valor por defecto).</li>
+    </ul>
+
+    <h3>Ejemplo:</h3>
+    <code>
+        document.getElementById('myButton').addEventListener('click', function() {
+            alert('Button was clicked!');
+        });
+    </code>
+
+    <h2>document</h2>
+    <p><code>document</code> es un objeto global que representa el documento HTML o XML cargado en el navegador. Proporciona varias propiedades y métodos para acceder y manipular el contenido y estructura del documento.</p>
+
+    <h3>Propiedades comunes:</h3>
+    <ul>
+        <li><strong>document.getElementById(id)</strong>: Devuelve el elemento con el ID especificado.</li>
+        <li><strong>document.querySelector(selector)</strong>: Devuelve el primer elemento que coincida con el selector CSS.</li>
+        <li><strong>document.querySelectorAll(selector)</strong>: Devuelve todos los elementos que coincidan con el selector CSS.</li>
+        <li><strong>document.createElement(tagName)</strong>: Crea un nuevo elemento HTML.</li>
+    </ul>
+
+    <h3>Ejemplo:</h3>
+    <code>
+        let element = document.getElementById('myElement');
+        element.style.color = 'red';
+    </code>
+
+    <h2>Bundlers</h2>
+    <p>Los bundlers son herramientas que toman módulos de código (JavaScript, CSS, imágenes, etc.) y los combinan en un único archivo o en unos pocos archivos, optimizados para el navegador. Esto mejora la eficiencia del sitio web, reduciendo el número de solicitudes HTTP y optimizando el rendimiento.</p>
+
+    <h3>Ejemplos de bundlers populares:</h3>
+
+    <h4>Webpack</h4>
+    <p>Una herramienta muy flexible y poderosa que permite gestionar, empaquetar y optimizar los módulos. Soporta loaders y plugins para transformar y optimizar diferentes tipos de archivos.</p>
+    <h5>Ejemplo de configuración:</h5>
+    <code>
+        // webpack.config.js
+        module.exports = {
+            entry: './src/index.js',
+            output: {
+                filename: 'bundle.js',
+                path: __dirname + '/dist'
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.css$/,
+                        use: ['style-loader', 'css-loader']
+                    },
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        use: 'babel-loader'
+                    }
+                ]
+            }
+        };
+    </code>
+
+    <h4>Parcel</h4>
+    <p>Un bundler sencillo y rápido que requiere poca configuración. Detecta automáticamente los diferentes tipos de archivos y los gestiona adecuadamente.</p>
+    <h5>Ejemplo de uso:</h5>
+    <code>
+        parcel index.html
+    </code>
+
+    <h4>Rollup</h4>
+    <p>Enfocado en la construcción de bibliotecas JavaScript, Rollup crea paquetes más pequeños y eficientes utilizando la sintaxis de módulos ES6.</p>
+    <h5>Ejemplo de configuración:</h5>
+    <code>
+        // rollup.config.js
+        import commonjs from '@rollup/plugin-commonjs';
+        import resolve from '@rollup/plugin-node-resolve';
+        import babel from '@rollup/plugin-babel';
+
+        export default {
+            input: 'src/index.js',
+            output: {
+                file: 'dist/bundle.js',
+                format: 'iife',
+                name: 'MyBundle'
+            },
+            plugins: [
+                resolve(),
+                commonjs(),
+                babel({ babelHelpers: 'bundled' })
+            ]
+        };
+    </code>
+
+    <p>Cada uno de estos bundlers tiene sus propias ventajas y desventajas, y la elección depende de las necesidades específicas del proyecto.</p>
 
 
 
 
 </div>
         <div class="pagina" id="pagina2" style="display: none;">
-            
+        <h1>NETSUITE CHEATSHEET</h1> 
+        <H2>Entities</H2>
+        <p>Entities are the people, places, and things that interact with your business. In NetSuite, entities are represented by records in the system. There are several types of entities in NetSuite, including:</p> 
+        <ul>
+            <li><strong>Customers:</strong> Individuals or companies that purchase goods or services from your business.</li>
+            <li><strong>Vendors:</strong> Individuals or companies that provide goods or services to your business.</li>
+            <li><strong>Employees:</strong> Individuals who work for your business.</li>
+            <li><strong>Partners:</strong> Individuals or companies that collaborate with your business.</li>
+            <li><strong>Contacts:</strong> Individuals associated with customers, vendors, employees, or partners.</li>
+        </ul>  
+        <h2>Items</h2>
+        <ul>
+            <li><strong>Inventory Items:</strong> Physical goods that you buy, sell, or manufacture.</li>
+            <li><strong>Non-Inventory Items:</strong> Goods or services that you buy or sell but do not track as inventory.</li>
+            <li><strong>Service Items:</strong> Services that you provide to customers.</li>
+            <li><strong>Assembly Items:</strong> Items that are built from other items.</li>
+            <li><strong>Kit Items:</strong> Groups of items that are sold together as a single unit.</li>
+        </ul>
+        <h2>Transactions</h2>
+        <ul>
+            <li><strong>Sales Orders:</strong> Orders from customers for goods or services.</li>
+            <li><strong>Purchase Orders:</strong> Orders to vendors for goods or services.</li>
+            <li><strong>Invoices:</strong> Bills to customers for goods or services.</li>
+            <li><strong>Bills:</strong> Invoices from vendors for goods or services.</li>
+            <li><strong>Payments:</strong> Payments from customers or to vendors.</li>
+            <li><strong>Journal Entries:</strong> Accounting transactions that affect the general ledger.</li>
+        </ul>
+        <h2> Ways of Bringing Data</h2>
+        <ul>
+            <li><strong>Importing:</strong> Importing data into NetSuite from external sources, such as CSV files or other systems.</li>
+            <li><strong>Integration:</strong> Integrating NetSuite with other systems, such as CRM, ERP, or e-commerce platforms.</li>
+            <li><strong>Manual Entry:</strong> Manually entering data into NetSuite using the user interface.</li>
+            <li><strong>Web Services:</strong> Using web services to interact with NetSuite programmatically.</li>
+        </ul>
         </div>
         <div class="pagina" id="pagina3" style="display: none;">
             <h1>HTML CHEATSHEET</h1>
