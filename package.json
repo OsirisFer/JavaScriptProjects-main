@@ -4,7 +4,8 @@
   "description": "La idea de este proyecto es un ROADMAP open-source en español de cada lenguaje de programación con toda la información ininterrumpida reducida concepto tras concepto de lo que se necesita saber de cada lenguaje para poder quizá ayudar a alguna persona que caiga en este sitio.\r Esta idea surge ante la explotación que a veces vemos en este ámbito. Hay tanta información disponible que a veces es difícil saber por dónde empezar o qué fuentes son confiables. Además, muchas veces la información más completa o avanzada está en inglés o en los docs se extiende demasiado la explicación de un concepto a veces alejando al principiante. Lo cual puede llevarlos a caer en cursos pagos que prometen soluciones rápidas pero que en realidad no ofrecen mucho valor. Con este proyecto, espero por lo menos dar un pantallazo inicial sobre todos los conceptos de cada lenguaje y armar al lector de los conceptos iniciales para no seguir en el \"tutorial hell\" y sentirse seguro de embarcarse en proyectos personales que es lo que realmente en mi filosofía llevan al desarrollo personal más que cualquier cartelito que diga yo hice tal curso de tal empresa. Cabe destacar que cada concepto se verá muy resumidamente y aún así recomiendo que de no entenderse algún tema recurrir a la documentación oficial. \r Inicialmente el scope es reunir todo el teórico y después retocar el front-end. Finalmente agregar elementos visuales hechos en herramientas como Three.js o tal para mejor ilustrar los diferentes conceptos. Cualquier contribución se agradece.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
