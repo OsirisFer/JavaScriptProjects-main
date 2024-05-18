@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html>
+	<!-- Metadatos -->
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prueba de RIA</title>
+    <link rel="stylesheet" type="text/css" href="CheatSheetCss.css">
+    <script src="PruebaPrueba.js"></script>
+</head>
+<body>
+
+    <div id="botones-paginacion">
+        <button onclick="mostrarPagina(1)">1</button>
+        <button onclick="mostrarPagina(2)">2</button>
+        <button onclick="mostrarPagina(3)">3</button>
+        <button onclick="mostrarPagina(4)">4</button>
+    </div>
+
+    <div id="contenido-paginado">
+        <div class="pagina" id="pagina1">
+        <h1>JS CHEATSHEET</h1>
+        <p>
+            var declarada dentro de una función es local a esa función, por lo que no puede ser accedidas desde fuera de ella<br>
+            var declarada fuera de una función son globales, por lo que puede ser accedida desde cualquier parte del código<br>
+            let y const si se declaran en un bloque de código, solo pueden ser accedidas dentro de ese bloque (if, for, while, etc)<br><br>
+            Hoisting lo que hace es que las variables y constantes suben al inicio del código, entonces existen para el compilador pero<br>
+            pero no con su valor asignado, por lo que si se intenta acceder a ellas antes de ser declaradas, se obtendrá un valor undefined<br>
+            <code>console.log(x);</code> // Output: <code>undefined</code><br>
+            <code>var x = 5;</code><br>
+            <code>console.log(x);</code> // Output: <code>5</code><br><br>
+            Usar camelCase para nombrar variables y constantes ej: hoistedVariable son case-sensitive asó que hoistedvariable no es lo mismo<br>
+        </p>
+        <h2>Tipos de Datos en JavaScript</h2>
+    <ul>
+        <li>Number: Representa enteros y números de punto flotante. Ejemplo: <code><strong>let num = 10;</strong></code></li>
+        <li>String: Representa texto. Ejemplo: <code><strong>let texto = "Hola";</strong></code></li>
+        <li>Boolean: Representa valores lógicos verdadero/falso. Ejemplo: <code><strong>let esVerdadero = true;</strong></code></li>
+        <li>Undefined: guarda el valor undefined. Ejemplo: <code><strong>let indefinido;</strong></code></li>
+        <li>Null: guarda el valor null. Ejemplo: <code><strong>let nulo = null;</strong></code></li>
+        <li>Object: Representa un objeto. Ejemplo: <code><strong>let persona = { nombre: "Juan", edad: 30 };</strong></code></li>
+        <li>Symbol:  Introducido en ES6, representa un identificador único e inmutable. Se utiliza para crear propiedades de objetos que son únicas y no colisionan con otras propiedades.. Ejemplo: <code><strong>const simboloId = Symbol('id');</strong></code></li>
+        <li>BigInt: Representa números enteros grandes. Ejemplo: <code><strong>let bigNum = 9007199254740991n;</strong></code></li>
+    </ul>
+    <h2>Creación de objetos:</h2>
+    <p>
+        <code>
+            let persona = {
+                nombre: "Juan",
+                edad: 30,
+                casado: false
+            };
+        </code>
+    </p>
+    <p>Un objeto en JavaScript es una colección de pares clave-valor. En este ejemplo, se crea un objeto llamado <code>persona</code> con tres propiedades: <code>nombre</code>, <code>edad</code> y <code>casado</code>.</p>
+    <h2>Acceso a las propiedades:</h2>
+    <p>
+        <code>
+            console.log(persona.nombre); // Juan
+            <br>
+            console.log(persona['edad']); // 30
+        </code>
+    </p>
+    <p>Las propiedades de un objeto se pueden acceder utilizando la notación de punto o la notación de corchetes.</p>
+    <h2>Métodos de los objetos:</h2>
+    <p>
+        <code>
+            let persona = {
+                nombre: "Juan",
+                edad: 30,
+                casado: false,
+                saludar: function() {
+                    console.log("Hola, mi nombre es " + this.nombre);
+                }
+            };
+            <br>
+            persona.saludar(); // Hola, mi nombre es Juan
+        </code>
+    </p>
+    <p>Los objetos en JavaScript pueden contener métodos, que son funciones asociadas al objeto. En este ejemplo, <code>saludar</code> es un método de <code>persona</code> que imprime un saludo.</p>
+    <h2>Herencia de objetos:</h2>
+    <p>
+        <code>
+            function Animal(nombre) {
+                this.nombre = nombre;
+            }
+            Animal.prototype.saludar = function() {
+                console.log("Hola, soy un " + this.nombre);
+            };
+            <br>
+            let perro = new Animal("Perro");
+            <br>
+            perro.saludar(); // Hola, soy un Perro
+        </code>
+    </p>
+    <p>Los objetos en JavaScript pueden heredar propiedades y métodos de otros objetos a través del prototipo. En este ejemplo, se define un constructor <code>Animal</code> con un método <code>saludar</code> que es heredado por el objeto <code>perro</code>.
+        Cuando intentas acceder a una propiedad de un objeto, JavaScript primero busca esa propiedad en el objeto mismo. Si no la encuentra, busca en el prototipo del objeto y luego en el prototipo del prototipo, y así sucesivamente hasta llegar al prototipo null.
+    <br> Ejemplo cuando hago <code>Animal.prototype.nombreAnimal = function() {
+        console.log("Hola, soy " + this.nombreAnimal);
+    };</code><br>
+        Lo que hago es cargarle al prototipo al animal el metodo no al objeto animal directamente. Ahorrando memoria porque evito duplicar metodos por cada instancia de animal. </p>
+        <h2>Objetos integrados en JavaScript</h2>
+
+    <ul>
+        <li><strong>Object:</strong> El objeto base de JavaScript que tiene métodos y propiedades comunes a todos los objetos.
+            <code>let persona = { nombre: 'Juan', edad: 30 };</code>
+        </li>
+        <li><strong>Array:</strong> Utilizado para almacenar colecciones de elementos en una secuencia indexada.
+            <code>let numeros = [1, 2, 3, 4, 5];</code>
+        </li>
+        <li><strong>String:</strong> Utilizado para manipular cadenas de texto.
+            <code>let mensaje = 'Hola, mundo!';</code>
+        </li>
+        <li><strong>Number:</strong> Utilizado para valores numéricos y operaciones matemáticas.
+            <code>let edad = 30;</code>
+        </li>
+        <li><strong>Boolean:</strong> Representa un valor lógico verdadero o falso.
+            <code>let esMayor = true;</code>
+        </li>
+        <li><strong>Function:</strong> Utilizado para definir funciones.
+            <code>function saludar(nombre) { console.log('Hola, ' + nombre); }</code>
+        </li>
+        <li><strong>Date:</strong> Utilizado para trabajar con fechas y horas.
+            <code>let fecha = new Date();</code>
+        </li>
+        <li><strong>RegExp:</strong> Utilizado para trabajar con expresiones regulares.
+            <code>let expresionRegular = /[a-z]+/;</code>
+        </li>
+        <li><strong>Error:</strong> Utilizado para representar errores en tiempo de ejecución.
+            <code>throw new Error('Este es un error personalizado');</code>
+        </li>
+        <li><strong>Math:</strong> Proporciona métodos y constantes matemáticas útiles.
+            <code>let raizCuadrada = Math.sqrt(16);</code>
+        </li>
+        <li><strong>JSON:</strong> Utilizado para trabajar con el formato de intercambio de datos JSON.
+            <code>let personaJSON = '{"nombre": "Juan", "edad": 30}';</code>;<br>
+            Puedes convertir un objeto JavaScript a una cadena JSON utilizando el método JSON.stringify():
+            <code>persona = { nombre: "Juan", edad: 30 };<br>
+            let personaJSON = JSON.stringify(persona);<br>
+            console.log(personaJSON); // '{"nombre":"Juan","edad":30}'</code> 
+        </li>
+    </ul> 
+    <h2>Typeof</h2>
+    <p>typeof es un operador en JavaScript que se utiliza para obtener el tipo de datos de una variable o expresión. <code>let x = 10;<br>
+        console.log(typeof x); // "number"</code></p>
+    
+        <h1>Typecasting en JavaScript</h1>
+
+        <h2>Conversión implícita</h2>
+        <p>JavaScript realiza conversiones implícitas de tipos cuando se realiza una operación entre tipos de datos diferentes. Por ejemplo:</p>
+        <code>let x = 10 + "20"; // x es "1020" (string)</code><br>
+        <code>let y = "10" - 5; // y es 5 (number)</code>
+    
+        <h2>Conversión explícita</h2>
+        <p>Se puede realizar conversión explícita utilizando funciones o operadores específicos:</p>
+        <ul>
+            <li><code>parseInt()</code> y <code>parseFloat()</code>: Convierten una cadena a un número entero o decimal, respectivamente.  <code>let num1 = parseInt("10"); // num1 es 10</code>  <code>let num2 = parseFloat("10.5"); // num2 es 10.5</code></li>
+            <li><code>String()</code>: Convierte un valor a una cadena de texto.</li>
+            <li><code>Number()</code>: Convierte un valor a un número.</li>
+            <li><code>Boolean()</code>: Convierte un valor a un booleano.</li>
+        </ul>
+    <h2>Type Coercion</h2>
+    <p>La coerción de tipos es la conversión automática o implícita de valores de un tipo de datos a otro. JavaScript es un lenguaje de tipado débil y dinámico, lo que significa que los tipos de datos se convierten automáticamente según sea necesario durante la ejecución del programa. Puede convertir automáticamente los valores de un tipo a otro según sea necesario para completar una operación. Por ejemplo, en una operación de suma donde uno de los operandos es una cadena, JavaScript convertirá el otro operando a cadena y concatenará las cadenas en lugar de sumar los números.</p>  
+    <h1>Arrays, Mapas y Conjuntos en JavaScript</h1>
+
+    <h2>Array</h2>
+    <p>Un array es una estructura de datos que se utiliza para almacenar una colección de elementos. Puedes inicializar un array con elementos predefinidos o crear un array vacío y agregar elementos a él dinámicamente.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let numeros = [1, 2, 3, 4, 5];</code></pre>
+
+    <h2>TypedArray</h2>
+    <p>TypedArray es un tipo especial de array en JavaScript que proporciona un mecanismo eficiente para trabajar con datos binarios y de tipo específico. A diferencia de los arrays normales, los TypedArray están diseñados para contener elementos de un tipo específico y se utilizan principalmente en operaciones que requieren un acceso rápido a los datos binarios.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let numeros = new Uint8Array([1, 2, 3, 4, 5]);</code></pre>
+
+    <h2>Map</h2>
+    <p>El objeto Map es una estructura de datos que almacena pares clave-valor y mantiene el orden de inserción de las claves. Las claves de un mapa pueden ser de cualquier tipo, incluidos objetos y valores primitivos.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let mapa = new Map();<br>mapa.set("clave1", "valor1");<br>mapa.set("clave2", "valor2");</code></pre>
+
+    <h2>Set</h2>
+    <p>El objeto Set es una estructura de datos que almacena valores únicos de cualquier tipo. Los valores en un conjunto son únicos, lo que significa que no puede haber duplicados en el conjunto.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let conjunto = new Set();<br>conjunto.add("a");<br>conjunto.add("b");<br>conjunto.add("a"); // "a" ya existe en el conjunto</code></pre>  
+    <h2>WeakMap</h2>
+    <p>El objeto WeakMap es una colección de pares clave/valor en la que las claves son objetos y los valores pueden ser de cualquier tipo. A diferencia de un Map estándar, las claves en un WeakMap son débiles (weak), lo que significa que no evitan que los objetos utilizados como claves sean eliminados por el recolector de basura si no hay otras referencias a ellos fuera del WeakMap.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let weakMap = new WeakMap();<br>let key = {};<br>weakMap.set(key, "value");</code></pre>
+    <p>Lo que hacen estos weakmap y weakset es que pueden ser borrados por el garbage collector cuando ya no son accesibles o referenciados por ninguna parte del código<br><b>Ejemplo con Weakmap vs Map</b><br><code> john = { name: "John" };<br>
+        let weakMap = new WeakMap();<br>
+        weakMap.set(john, "...");<br>
+        john = null; // overwrite the reference<br>
+        // john is removed from memory!<br>
+        <br>
+        let john = { name: "John" };<br>
+        let array = [ john ];<br>
+        john = null; // overwrite the reference<br>
+        // the object previously referenced by john is stored inside the array<br>
+        // therefore it won't be garbage-collected<br>
+        // we can get it as array[0]</code></p>
+    <h2>WeakSet</h2>
+    <p>El objeto WeakSet es una colección de objetos. A diferencia de Set, los objetos en un WeakSet son débiles (weak), lo que significa que si no hay otras referencias a un objeto almacenado en un WeakSet, el recolector de basura puede eliminar el objeto de la memoria.</p>
+    <p>Ejemplo:</p>
+    <pre><code>let weakSet = new WeakSet();<br>let obj = {};<br>weakSet.add(obj);</code></pre>
+    <h2>Comparación de Igualdad Débil (<code>==</code>)</h2>
+    <ul>
+        <li>JavaScript intenta convertir ambos valores a un tipo común antes de realizar la comparación.</li>
+        <li>Si los tipos de los dos valores son diferentes, JavaScript intentará convertir uno o ambos valores para que tengan el mismo tipo antes de realizar la comparación.</li>
+        <li>Ejemplo: <code>1 == '1'</code> devuelve <code>true</code> porque JavaScript convierte automáticamente el string <code>'1'</code> en el número <code>1</code> antes de realizar la comparación.</li>
+    </ul>
+    <h2>Comparación de Igualdad Estricta (<code>===</code>)</h2>
+    <ul>
+        <li>En una comparación de igualdad estricta, los valores se comparan sin realizar ninguna conversión de tipo.</li>
+        <li>Los valores solo se consideran iguales si tienen el mismo valor y el mismo tipo de datos.</li>
+        <li>Ejemplo: <code>1 === '1'</code> devuelve <code>false</code> porque los tipos de datos son diferentes (número vs string), incluso si los valores son iguales.</li>
+    </ul>
+    <p>En general, se recomienda utilizar la comparación de igualdad estricta (<code>===</code>) en lugar de la comparación de igualdad débil (<code>==</code>), ya que la igualdad estricta es más predecible y menos propensa a errores debido a las conversiones automáticas de tipo que realiza JavaScript en la igualdad débil.</p>
+    <h2>Object.is()</h2>
+    <ul>
+        <li>se utiliza sobre los operadores de igualdad estricta (===) cuando se desea una comparación de igualdad aún más estricta y precisa. Aunque === es generalmente seguro y confiable para comparar valores en JavaScript, tiene algunas peculiaridades que pueden conducir a resultados inesperados en ciertos casos. Object.is() aborda estas peculiaridades al proporcionar una comparación más precisa en los siguientes casos:</li>
+        <li><code>console.log(NaN === NaN);    // false <br>
+        console.log(Object.is(NaN, NaN)); // true</code><br></li>
+        <li><code>console.log(-0 === +0);    // true<br>
+            console.log(Object.is(-0, +0)); // false</code><br>
+        </li>
+    </ul>
+    <h2>For in y For of</h2>
+    <p>For in se utiliza para iterar sobre las propiedades de un objeto. For of se utiliza para iterar sobre los elementos de un objeto iterable como un array o un string.</p>
+    <h2>Ejemplo de uso de break y continue en JavaScript</h2>
+  <p>La palabra clave <code>break</code> se utiliza para salir de un bucle.</p>
+  <pre>
+    <code>
+      for (let i = 0; i &lt; 10; i++) {
+        if (i === 5) {
+          break;
+        }
+        console.log(i);
+      }
+      // Salida: 0 1 2 3 4
+    </code>
+  </pre>
+  <p>La palabra clave <code>continue</code> se utiliza para saltar a la siguiente iteración de un bucle.</p>
+  <pre>
+    <code>
+      for (let i = 0; i &lt; 5; i++) {
+        if (i === 2) {
+          continue;
+        }
+        console.log(i);
+      }
+      // Salida: 0 1 3 4
+    </code>
+  </pre>
+  <h2>Declaraciones Etiquetadas en JavaScript</h2>
+  <p>Las declaraciones etiquetadas te permiten asociar una etiqueta a una declaración para controlar el flujo de ejecución.</p>
+  
+  <h2>Ejemplo de uso:</h2>
+  <pre>
+    <code>
+      outerloop: for (let i = 0; i &lt; 3; i++) {
+        innerloop: for (let j = 0; j &lt; 3; j++) {
+          console.log('i = ' + i + ', j = ' + j);
+          if (i === 1 &amp;&amp; j === 1) {
+            break outerloop;
+          }
+        }
+      }
+    </code>
+  </pre>
+    <p>En este ejemplo, la etiqueta "outerloop" está asociada al bucle exterior y "innerloop" al bucle interior. La declaración <code>break outerloop;</code> hace que se salga del bucle etiquetado como "outerloop", terminando ambos bucles.</p>
+    <h2>Manejo de Excepciones en JavaScript</h2>
+    <p>El manejo de excepciones se utiliza para controlar errores que pueden ocurrir durante la ejecución de un programa, javascript creara un objeto error con dos propiedades nombre y mensaje.</p>
+    <ul>
+        <li><code>try</code>: Define un bloque de código en el que pueden ocurrir errores.</li>
+        <li><code>catch</code>: Define un bloque de código para manejar las excepciones lanzadas en el bloque <code>try</code>.</li>
+        <li><code>finally</code>: Define un bloque de código que se ejecutará siempre, independientemente de si se produce un error o no en el bloque <code>try</code>.</li>
+        <li><code>throw</code>: Lanza una excepción manualmente.</li>
+      </ul>
+    <h2>Ejemplo de uso:</h2>
+    <pre>
+        <code>
+          function validarEdad(edad) {
+            if (edad < 18) {
+              throw new Error("La edad debe ser mayor o igual a 18 años");
+            }
+            return "Puede ingresar";
+          }
+    
+          try {
+            let resultado = validarEdad(16);
+            console.log(resultado);
+          } catch (error) {
+            console.error('Se produjo un error:', error.message);
+          } finally {
+            console.log('Este bloque siempre se ejecuta, independientemente de si se produjo un error o no');
+          }
+        </code>
+      </pre>
+    <img src="Operadores.png" alt="Operadores JS">
+    <h2>Definición de Funciones</h2>
+    <p>Las declaraciones de funciones en JavaScript se realizan utilizando la palabra clave <code>function</code>. Las funciones también se pueden definir guardando expresiones de función en una variable. Las funciones "arrow" se utilizan comúnmente de esta manera.</p>
+        <h3>Ejemplo:</h3>
+    <pre><code>
+        function saludar(nombre) {
+            return "¡Hola, " + nombre + "!";
+        }
+        let mensaje = saludar("John");
+        console.log(mensaje); // Salida: ¡Hola, John!
+    </code></pre>
+        <h2>Llamando a Funciones</h2>
+    <p>Cuando se define una función, aún no se ejecuta. Para llamar e invocar el código de una función, utiliza el nombre de la función seguido de paréntesis: <code>nombreDeLaFuncion()</code>.</p>
+        <h3>Ejemplo:</h3>
+    <pre><code>
+        function suma(a, b) {
+            return a + b;
+        }
+        let resultado = suma(5, 3);
+        console.log(resultado); // Salida: 8
+    </code></pre>
+    <h2>Parámetros Predeterminados en Funciones de JavaScript</h2>
+        <p>Los parámetros predeterminados te permiten especificar valores por defecto para los parámetros de una función en caso de que no se pase ningún argumento o si el argumento es <code>undefined</code>. Esta característica fue introducida en ECMAScript 6 (ES6).</p>
+    <pre><code>
+        function saludar(nombre = "Invitado") {
+            console.log("Hola, " + nombre + "!");
+        }
+        saludar();    // Salida: Hola, Invitado!
+        saludar("Juan"); // Salida: Hola, Juan!
+    </code></pre>
+        <p>En el ejemplo anterior, la función <code>saludar</code> tiene un parámetro predeterminado <code>nombre</code> establecido en <code>"Invitado"</code>. Si no se proporciona ningún argumento al llamar a <code>saludar()</code>, utilizará el valor predeterminado. Si se proporciona un argumento, utilizará el valor proporcionado.</p>
+        <h2>Parámetros Rest</h2>
+        <p>Los Rest Parameters en JavaScript permiten a una función aceptar un número variable de argumentos como un array, proporcionando una forma de representar una cantidad indefinida de parámetros como un solo parámetro. Esto es útil cuando queremos que una función acepte un número variable de argumentos sin tener que especificar cada uno de ellos en la definición de la función.</p>
+        <p>La sintaxis de Rest Parameters en JavaScript es utilizar tres puntos (`...`) seguidos del nombre que queremos darle al parámetro que recogerá el resto de los argumentos:</p>
+        <pre><code>
+            function nombreFuncion(parametro1, parametro2, ...restoDeParametros) {
+                // Cuerpo de la función
+            }
+        </code></pre>
+        
+        <p>En este ejemplo, `parametro1` y `parametro2` son parámetros normales de la función, mientras que `restoDeParametros` es el Rest Parameter que recogerá el resto de los argumentos pasados a la función en forma de un array.</p>
+        <h2>Arrow Functions</h2>
+        <p>La sintaxis básica de una Arrow Function es:</p>
+        <pre><code>
+            let miFuncion = (param1, param2) => {
+                // Cuerpo de la función
+            };
+        </code></pre>
+        <p>Si el cuerpo de la función consiste en una sola expresión, puedes omitir las llaves y la palabra <code>return</code>:</p>
+        <pre><code>
+            let cuadrado = (num) => num * num;
+            console.log(cuadrado(5)); // Salida: 25
+        </code></pre>
+        <p>Si la función no tiene parámetros o tiene solo un parámetro, puedes omitir los paréntesis alrededor de los parámetros:</p>
+        <pre><code>
+            let saludar = () => "Hola";
+            console.log(saludar()); // Salida: Hola
+    
+            let duplicar = num => num * 2;
+            console.log(duplicar(3)); // Salida: 6
+        </code></pre>
+        <p>En las Arrow Functions, <code>this</code> se mantiene del contexto léxico circundante:</p>
+        <pre><code>
+            function Persona() {
+                this.edad = 0;
+    
+                setInterval(() => {
+                    this.edad++; // `this` apunta al objeto Persona
+                    console.log(this.edad);
+                }, 1000);
+            }
+    
+            let p = new Persona();
+        </code></pre>
+        <p>Las Arrow Functions no pueden ser utilizadas como constructores para crear objetos y no tienen su propio <code>this</code>.</p>
+        <p><code>() => expression</code></p>
+        <p><code>param => expression</code></p>
+        <p><code>(param) => expression</code></p>
+        <p><code>(param1, paramN) => expression</code></p>
+        
+        <p><code>() => { statements }</code></p>
+        <p><code>param => { statements }</code></p>
+        <p><code>(param1, paramN) => { statements }</code></p>
+        <h2>IIFE en JavaScript</h2>
+        <p>Las IIFE (Immediately Invoked Function Expressions) en JavaScript son funciones que se ejecutan inmediatamente después de ser definidas. Son útiles en situaciones donde necesitas ejecutar una función de forma inmediata y luego descartarla, lo que ayuda a evitar la contaminación del ámbito global y a mantener el código más organizado.</p>
+        <p>Sintaxis básica: 
+            La sintaxis de una IIFE (Immediately Invoked Function Expression) en JavaScript consiste en envolver una función entre paréntesis y luego llamarla inmediatamente añadiendo () al final. Esto hace que la función se ejecute automáticamente tan pronto como se define.</p>
+        <pre><code>
+            (function() {
+            // Código a ejecutar
+            })();
+        </code></pre>        
+        <p>Uso de parámetros</p>
+        <pre><code>
+            (function(param1, param2) {
+            // Código a ejecutar con parámetros
+            })(valor1, valor2);
+        </code></pre>        
+        <p>Evitar la contaminación del ámbito global</p>
+        <pre><code>
+            (function() {
+            var mensaje = "Hola, mundo!";
+            console.log(mensaje);
+            })();
+            // console.log(mensaje); // Esto dará un error porque `mensaje` está fuera de ámbito
+        </code></pre>        
+        <p>Módulos</p>
+        <pre><code>
+            var modulo = (function() {
+            var privadoVariable = "Soy privado";
+            function privadoFuncion() {
+                return "También soy privado";
+            }
+            return {
+                publicoVariable: "Soy público",
+                publicoFuncion: function() {
+                return "También soy público";
+                }
+            };
+            })();
+            console.log(modulo.publicoVariable); // Salida: Soy público
+            console.log(modulo.publicoFuncion()); // Salida: También soy público
+            // console.log(modulo.privadoVariable); // Esto dará un error porque `privadoVariable` es privada
+            // console.log(modulo.privadoFuncion()); // Esto dará un error porque `privadoFuncion` es privada
+        </code></pre>        
+        <p>Las IIFE son una herramienta útil en JavaScript para encapsular código y evitar la contaminación del ámbito global, lo que las hace especialmente útiles en aplicaciones más grandes y complejas.</p>
+        <p>El objeto <code>arguments</code> en JavaScript es una variable local disponible dentro de todas las funciones que proporciona un conjunto de argumentos pasados a la función cuando es llamada. El objeto <code>arguments</code> es similar a un array, pero no tiene todas las funcionalidades de un array (por ejemplo, no tiene métodos como <code>map</code> o <code>forEach</code>).</p>
+            <h2>Acceso a los argumentos</h2>
+        <pre><code>
+            function suma() {
+            let total = 0;
+            for (let i = 0; i &lt; arguments.length; i++) {
+                total += arguments[i];
+            }
+            return total;
+            }
+
+            console.log(suma(1, 2, 3, 4, 5)); // Salida: 15
+        </code></pre>
+        <p>Número de argumentos</p>
+        <pre><code>
+            function numeroDeArgumentos() {
+            return arguments.length;
+            }
+
+            console.log(numeroDeArgumentos(1, 2, 3)); // Salida: 3
+        </code></pre>
+        <p>No es un array real</p>
+        <p>Aunque el objeto <code>arguments</code> se comporta de manera similar a un array, no es un array real y no tiene todos los métodos de un array. Por ejemplo, no puedes utilizar métodos como <code>map</code> o <code>forEach</code> directamente en el objeto <code>arguments</code>.</p>
+        <p>Contexto de ejecución</p>
+        <pre><code>
+            function ejemplo(a, b) {
+            console.log(arguments[0], arguments[1]);
+            a = 10;
+            b = 20;
+            console.log(arguments[0], arguments[1]);
+            }
+            ejemplo(1, 2);
+            // Salida:
+            // 1, 2
+            // 1, 2
+        </code></pre>
+               <p>El objeto <code>arguments</code> puede ser útil cuando necesitas manejar un número variable de argumentos en una función o cuando no sabes de antemano cuántos argumentos serán pasados. Sin embargo, su uso se considera menos común en el desarrollo moderno de JavaScript, ya que existen alternativas más simples y seguras, como el uso de parámetros de función predeterminados o el uso de arrays reales para pasar argumentos.</p>
+        <h2>Call Stack o Pila Llamados</h2>
+        <p>La pila de funciones (Function Stack) en JavaScript se ejecuta de manera secuencial, de arriba hacia abajo. Esto significa que cuando se llama a una función, se añade al principio de la pila (arriba de todo) y se ejecuta antes que las funciones que ya estaban en la pila. Una vez que una función termina su ejecución, se elimina de la pila y el control vuelve a la función que estaba en la parte superior de la pila antes de que se llamara a la función actual. Por ejemplo si una función llama a otra función primero se ejecuta la que se llamó y después que esta termine se vuelve a la original que la llamó.</p>
+        <h2>Recursión</h2>
+        <p> La recursión es un concepto en programación en el que una función se llama a sí misma para resolver un problema. La recursión se utiliza comúnmente en algoritmos que pueden dividirse en subproblemas más pequeños que son similares al problema original. La recursión se compone de dos partes: el caso base y el caso recursivo.</p>
+        <pre><code>
+        var recursionLimit = 0;
+        function r() {
+            recursionLimit++;
+            r();
+        }
+        r();</code></pre>
+        <h2>Closures en JavaScript</h2>
+        <p>Un closure en JavaScript es una función que tiene acceso a variables en su ámbito externo, incluso después de que la función externa haya terminado de ejecutarse. En otras palabras, un closure recuerda el ámbito en el que se creó y puede acceder a las variables de ese ámbito incluso cuando la función se ejecuta en un contexto diferente.</p>
+        <p>Los closures son posibles en JavaScript debido al "lexical scoping", que determina el alcance de las variables en función de la estructura del código fuente. Cuando una función se define dentro de otra función, la función interna forma un closure sobre las variables de la función externa, lo que significa que retiene acceso a esas variables incluso después de que la función externa haya finalizado.</p>
+        <p>Los closures son útiles en muchos escenarios, como para crear funciones que actúan como contadores privados, para encapsular datos privados en módulos, para manejar eventos y devoluciones de llamada, entre otros.</p>
+        <p>En resumen, los closures en JavaScript permiten un manejo más flexible de las variables y el alcance de las funciones, lo que los hace una característica poderosa y versátil del lenguaje.</p>
+    <h3>Ejemplo de Closure:</h3>
+    <pre><code>
+        function contador() {
+            let count = 0;
+            return function() {
+                return ++count;
+            };
+        }
+        let incrementar = contador();
+        console.log(incrementar()); // 1
+        console.log(incrementar()); // 2
+        console.log(incrementar()); // 3
+    </code></pre>
+    <h2>Modo estricto en JavaScript</h2>
+    <p>El "modo estricto" (strict mode) es una característica de JavaScript introducida en ECMAScript 5 que te permite escribir código JavaScript de manera más segura y con mejores prácticas. Cuando se activa el "modo estricto", se hacen algunas restricciones y cambios en el comportamiento normal de JavaScript.</p>
+    <p>Algunas de las características y usos del "modo estricto" incluyen:</p>
+    <ul>
+        <li>Errores y advertencias adicionales.</li>
+        <li>Errores en asignaciones no permitidas.</li>
+        <li>Eliminación de funciones y variables globales implícitas.</li>
+        <li>Restricciones en la sintaxis.</li>
+        <li>Evitar el uso de la declaración <code>with</code>.</li>
+    </ul>
+    <p>En resumen, el "modo estricto" es una herramienta útil para escribir código JavaScript más seguro y robusto, evitando errores comunes y aplicando mejores prácticas de programación. Se recomienda utilizarlo en todos los nuevos proyectos y al actualizar código existente para mejorar su calidad y mantenibilidad.</p>
+    <h2>Keyword "this" en JavaScript</h2>
+    <p>El keyword <code>this</code> en JavaScript se refiere al objeto al que pertenece en un determinado contexto. El valor de <code>this</code> depende de cómo se llama a la función y dónde se encuentra la llamada a la función.</p>
+        <ol>
+        <li><strong>En el contexto global:</strong> <code>this</code> se refiere al objeto global en el navegador (<code>window</code> en un navegador web) o al objeto global en Node.js (<code>global</code> en Node.js).</li>
+                <li><strong>En el contexto de una función:</strong> 
+            <ul>
+                <li>Si se llama a la función como un método de un objeto, <code>this</code> se refiere al objeto que posee el método.</li>
+                <li>Si se llama a la función como una función normal, <code>this</code> se refiere al objeto global (o <code>undefined</code> en modo estricto).</li>
+            </ul>
+            <code>
+                let objeto = {
+                    nombre: 'Juan',
+                    saludar: function() {
+                        console.log('Hola, mi nombre es ' + this.nombre);
+                    }
+                };                
+                objeto.saludar(); // Hola, mi nombre es Juan                
+                let saludarFuncion = objeto.saludar;
+                saludarFuncion(); // TypeError en modo estricto, de lo contrario: Hola, mi nombre es undefined o Hola, mi nombre es [nombre global]
+            </code>
+        </li>        
+        <li><strong>En el contexto de un evento:</strong> <code>this</code> se refiere al elemento en sí en un manejador de eventos en un elemento HTML.</li>
+                <li><strong>En el contexto de una función flecha:</strong> En una función flecha, <code>this</code> se mantiene del ámbito exterior al que pertenece la función flecha, en lugar de ser dinámico como en las funciones regulares.</li>
+        <code>
+            let objeto = {
+                nombre: 'María',
+                saludar: function() {
+                    setTimeout(() => {
+                        console.log('Hola, mi nombre es ' + this.nombre);
+                    }, 1000);
+                }
+            };            
+            objeto.saludar(); // Hola, mi nombre es María después de 1 segundo
+        </code>
+    </ol>    
+    <p>Entender cómo funciona <code>this</code> es importante para evitar errores y utilizarlo correctamente en diferentes situaciones en JavaScript.</p>
+    <p>In an object method, this refers to the object<br>
+        Alone, this refers to the global object<br>
+        In a function, this refers to the global object<br>
+        In a function, in strict mode, this is undefined<br>
+        In an event, this refers to the element that received the event<br>
+        Methods like call(), apply(), and bind() can refer this to any object</p>
+    <h2>Function Borrowing</h2>
+    <p>Fucntion Borrowing consiste en tomar prestada una función de otro objeto y utilizarla en el contexto de un objeto diferente. Esto se puede hacer utilizando los métodos <code>call()</code> y <code>apply()</code> en JavaScript. Es medio controversial "Function borrowing is usually just a workaround for poor initial design."</p>
+    <pre><code>let obj1 = {
+        nombre: 'Juan',
+        saludar: function() {
+            console.log('Hola, mi nombre es ' + this.nombre);
+        }
+    };
+        let obj2 = {
+        nombre: 'María'
+    };
+        obj1.saludar(); // Hola, mi nombre es Juan
+        // Usando la función de obj1 en obj2
+    obj1.saludar.call(obj2); // Hola, mi nombre es María</code></pre>
+    <h2>Explicit Binding</h2>
+    <p>Explicit Binding es una técnica en JavaScript para forzar a una función a utilizar/asociar un objeto específico como su contexto de <code>this</code>. Esto se puede hacer utilizando los métodos <code>call()</code> lo pide separado por comas, <code>apply()</code> lo pide como un arreglo de los parámetros o <code>bind()</code> te crea una función nueva con el contexto nuevo en JavaScript.</p>
+    <pre><code>
+    const persona = {
+        nombre: 'Juan',
+    };
+    const otraPersona = {
+        nombre: 'María'
+    };
+    function saludar(likes, dislikes) {
+        console.log('Hola, mi nombre es ' + this.nombre + y tengo ' + likes + ' likes y ' + dislikes + ' dislikes');
+    }
+    console.log(saludar.call(persona, 10, 5)); // Hola, mi nombre es Juan y tengo 10 likes y 5 dislikes
+    console.log(saludar.apply(otraPersona, [20, 10])); // Hola, mi nombre es María y tengo 20 likes y 10 dislikes
+    const nuevaFuncion = saludar.bind(persona);
+    console.log(nuevaFuncion(15, 5)); // Hola, mi nombre es Juan y tengo 15 likes y 5 dislikes
+    </code></pre>
+    <h2>Asynchronous JavaScript</h2>
+    <p>La programación asíncrona es una técnica que permite que tu programa inicie una tarea potencialmente de larga duración y aún así pueda responder a otros eventos mientras esa tarea se ejecuta, en lugar de tener que esperar hasta que esa tarea haya terminado. Una vez que esa tarea ha terminado, tu programa recibe el resultado.
+        Muchas funciones proporcionadas por los navegadores, especialmente las más interesantes, pueden llevar mucho tiempo y, por lo tanto, son asíncronas. Por ejemplo:
+        Hacer solicitudes HTTP utilizando fetch()<br>
+        Acceder a la cámara o al micrófono de un usuario utilizando getUserMedia()<br>
+        Pedir a un usuario que seleccione archivos utilizando showOpenFilePicker()</p>
+        <p>Hay varias formas de lograr la asincronía en JavaScript:</p>
+            <ol>
+            <li><strong>Callbacks:</strong> Los callbacks son funciones que se pasan como argumentos a otras funciones y se ejecutan después de que se completa una operación asincrónica. Los callbacks son una forma común de trabajar con operaciones asíncronas en JavaScript, pero como pueden llevar a un código anidado y difícil de leer (callback hell) ya no se usan tanto.</li>
+                <pre><code>
+                    function doStep1(init, callback) {
+                        const result = init + 1;
+                        callback(result);
+                      }
+                      
+                      function doStep2(init, callback) {
+                        const result = init + 2;
+                        callback(result);
+                      }
+                      
+                      function doStep3(init, callback) {
+                        const result = init + 3;
+                        callback(result);
+                      }
+                      
+                      function doOperation() {
+                        doStep1(0, (result1) => {
+                          doStep2(result1, (result2) => {
+                            doStep3(result2, (result3) => {
+                              console.log(`result: ${result3}`);
+                            });
+                          });
+                        });
+                      }
+                      
+                      doOperation();
+                </code></pre>
+            </li>            
+            <li><strong>Promesas:</strong> Las promesas representan un valor que puede estar disponible ahora, en el futuro o nunca. Permiten encadenar operaciones asincrónicas de manera más legible y manejar errores de manera más efectiva.
+                <pre><code>
+                    function hacerAlgoAsincrono() {
+                        return new Promise(function(resolve, reject) {
+                            setTimeout(function() {
+                                console.log('Operación asincrónica completada');
+                                resolve();
+                            }, 1000);
+                        });
+                    }    
+                    console.log('Comenzando operación asincrónica');
+                    hacerAlgoAsincrono().then(function() {
+                        console.log('Continuando con el flujo de trabajo');
+                    });
+                </code></pre>
+            </li>            
+            <li><strong>Async/await:</strong> La sintaxis async/await es una forma de escribir código asincrónico de manera síncrona. Permite que una función asíncrona se comporte como una función síncrona al utilizar la palabra clave await para esperar que se resuelva una promesa.
+                <pre><code>
+                    async function hacerAlgoAsincrono() {
+                        return new Promise(function(resolve, reject) {
+                            setTimeout(function() {
+                                console.log('Operación asincrónica completada');
+                                resolve();
+                            }, 1000);
+                        });
+                    }    
+                    console.log('Comenzando operación asincrónica');
+                    async function ejecutar() {
+                        await hacerAlgoAsincrono();
+                        console.log('Continuando con el flujo de trabajo');
+                    }
+                    ejecutar();
+                </code></pre>
+            </li>
+        </ol>        
+        <p>En resumen, JavaScript ofrece varias formas de trabajar de manera asíncrona, lo que es fundamental para construir aplicaciones web interactivas y eficientes. La elección de la técnica adecuada depende del caso de uso específico y de las preferencias de estilo de codificación.</p>
+        <h2>setTimeout y setInterval en JavaScript</h2>
+            <h3>setTimeout</h3>
+        <p>La función <code>setTimeout</code> se utiliza para ejecutar una función o un fragmento de código una vez después de un período de tiempo especificado.</p>
+        <pre><code>setTimeout(function() {
+        console.log('Hola, mundo!');
+    }, 1000); // Ejecutar después de 1 segundo</code></pre>
+                <h3>setInterval</h3>
+        <p>La función <code>setInterval</code> se utiliza para ejecutar una función o un fragmento de código repetidamente cada cierto período de tiempo especificado.</p>
+        <pre><code>setInterval(function() {
+        console.log('Hola, mundo!');
+    }, 1000); // Ejecutar cada 1 segundo</code></pre>
+                <p>Es importante tener en cuenta que tanto <code>setTimeout</code> como <code>setInterval</code> son funciones asíncronas y no detienen la ejecución del resto del código. Además, ambas funciones devuelven un identificador que puede usarse para cancelar la ejecución futura de la función con <code>clearTimeout</code> (para <code>setTimeout</code>) o <code>clearInterval</code> (para <code>setInterval</code>).</p>
+                <h2>XMLHttpRequest y fetch en JavaScript</h2>
+    
+                <h3>XMLHttpRequest (XHR)</h3>
+                <p>XMLHttpRequest es un objeto en JavaScript que proporciona funcionalidades para realizar solicitudes HTTP de forma asíncrona.</p>
+                <pre><code>var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://ejemplo.com/api/data', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send();</code></pre>
+                
+                <h3>fetch API</h3>
+                <p>fetch es una API moderna para realizar solicitudes HTTP que proporciona una interfaz más limpia y promesas para trabajar de manera asíncrona.</p>
+                <pre><code>fetch('https://ejemplo.com/api/data')
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));</code></pre>
+                
+                <h3>Diferencias</h3>
+                <ul>
+                    <li>XMLHttpRequest es compatible con versiones anteriores de navegadores, mientras que fetch es una API moderna.</li>
+                    <li>fetch utiliza promesas, lo que facilita el manejo de las respuestas y el encadenamiento de operaciones.</li>
+                    <li>fetch no envía ni recibe cookies de forma predeterminada, mientras que XMLHttpRequest sí lo hace.</li>
+                    <li>fetch no rechaza la promesa en caso de errores HTTP, mientras que XMLHttpRequest sí lo hace.</li>
+                </ul>
+                <h2>Classes en JavaScript</h2>
+        <h3>Declaración de una clase</h3>
+    <p>Para declarar una clase en JavaScript, utilizamos la palabra clave <code>class</code>, seguida del nombre de la clase. Dentro de la clase, definimos métodos utilizando la sintaxis de funciones normales.</p>
+    <pre><code>class Persona {
+    constructor(nombre, edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+    saludar() {
+        console.log(`Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`);
+    }
+}</code></pre>
+        <h3>Creación de objetos</h3>
+    <p>Para crear un objeto de una clase, utilizamos la palabra clave <code>new</code> seguida del nombre de la clase y los argumentos necesarios para el constructor, si lo tiene.</p>
+    <pre><code>let persona1 = new Persona('Juan', 30);
+let persona2 = new Persona('María', 25);</code></pre>
+        <h3>Herencia</h3>
+    <p>Las clases en JavaScript también admiten la herencia. Para heredar de una clase base, utilizamos la palabra clave <code>extends</code> seguida del nombre de la clase base.</p>
+    <pre><code>class Estudiante extends Persona {
+    constructor(nombre, edad, curso) {
+        super(nombre, edad);
+        this.curso = curso;
+    }
+    estudiar() {
+        console.log(`${this.nombre} está estudiando ${this.curso}.`);
+    }
+}
+let estudiante1 = new Estudiante('Pedro', 20, 'Matemáticas');</code></pre>
+<h2>Iterators y Generators en JavaScript</h2>
+<h3>Iteradores (Iterators)</h3>
+<p>Los iteradores son objetos que permiten recorrer secuencias de datos, como arrays, cadenas (strings) o cualquier objeto con una estructura similar a una colección.</p>
+<pre><code>let arr = [1, 2, 3];
+let iterator = arr[Symbol.iterator]();
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }</code></pre>
+<h3>Generadores (Generators)</h3>
+<p>Los generadores son funciones especiales que pueden ser pausadas y luego reanudadas. Se declaran utilizando la palabra clave <code>function*</code> y utilizan la palabra clave <code>yield</code> para pausar la ejecución y devolver un valor.</p>
+<pre><code>function* generateNumbers() {
+yield 1;
+yield 2;
+yield 3;
+}
+let generator = generateNumbers();
+console.log(generator.next()); // { value: 1, done: false }
+console.log(generator.next()); // { value: 2, done: false }
+console.log(generator.next()); // { value: 3, done: false }
+console.log(generator.next()); // { value: undefined, done: true }</code></pre>
+<p>Los generadores son útiles cuando se necesitan secuencias de valores que pueden ser generados de manera perezosa (lazy) o cuando se necesita un control más fino sobre la generación de valores en una secuencia. Los iteradores y generadores son características poderosas de JavaScript que pueden mejorar la legibilidad y la eficiencia del código cuando se utilizan correctamente.</p>
+<h2>Módulos en JavaScript</h2>
+    
+<h3>Exportar desde un módulo</h3>
+<p>Para exportar variables, funciones o clases desde un módulo, utilizamos la palabra clave <code>export</code>. Podemos exportar elementos individualmente o usar la declaración <code>export default</code> para exportar un elemento por defecto.</p>
+<pre><code>// En el archivo modulo.js
+export const PI = 3.141592;
+export function double(number) {
+return number * 2;
+}
+export default function sayHello(name) {
+console.log(`Hello, ${name}!`);
+}</code></pre>
+
+<h3>Importar en otro módulo</h3>
+<p>Para importar elementos de un módulo en otro, utilizamos la palabra clave <code>import</code>. Podemos importar elementos individualmente o importar todo un módulo con la declaración <code>import * as nombre from 'ruta'</code>.</p>
+<pre><code>// En otro archivo
+import { PI, double } from './modulo.js';
+import sayHello from './modulo.js';
+
+console.log(PI); // 3.141592
+console.log(double(5)); // 10
+sayHello('John'); // Hello, John!</code></pre>
+
+<h3>Exportar e importar todo un módulo</h3>
+<p>También podemos exportar e importar todo un módulo utilizando la declaración <code>export * from 'ruta'</code> para exportar y <code>import * as nombre from 'ruta'</code> para importar.</p>
+<pre><code>// En el archivo modulo.js
+function greet(name) {
+console.log(`Greetings, ${name}!`);
+}
+
+export { greet };</code></pre>
+<pre><code>// En otro archivo
+import * as modulo from './modulo.js';
+
+modulo.greet('Alice'); // Greetings, Alice!</code></pre>
+
+<p>Los módulos en JavaScript nos permiten estructurar nuestro código de manera modular y reutilizable, lo que facilita el mantenimiento y la colaboración en proyectos más grandes. Es importante tener en cuenta que los módulos de JavaScript están estandarizados en ECMAScript 6 (ES6) y son ampliamente compatibles en navegadores modernos y entornos Node.js.</p>
+<h2>Chrome DevTools</h2>
+    
+<p>Las Chrome DevTools son un conjunto de herramientas de desarrollo integradas en el navegador Google Chrome que te permiten depurar, perfilar y editar sitios web y aplicaciones web directamente desde el navegador. Estas herramientas son muy útiles para los desarrolladores web, ya que proporcionan una variedad de funciones para mejorar el proceso de desarrollo y depuración de código JavaScript.</p>
+
+<h3>Características principales</h3>
+<ol>
+    <li><strong>Consola (Console):</strong> Permite ejecutar código JavaScript directamente en la página web, probar fragmentos de código, imprimir mensajes de depuración e interactuar con el DOM.</li>
+    <li><strong>Depurador de JavaScript (JavaScript Debugger):</strong> Permite establecer puntos de interrupción en el código y ejecutarlo paso a paso para identificar y corregir errores.</li>
+    <li><strong>Rendimiento (Performance):</strong> Permite perfilar el rendimiento de la aplicación web, identificar cuellos de botella y optimizar el código para mejorar la experiencia del usuario.</li>
+    <li><strong>Aplicación (Application):</strong> Permite inspeccionar y depurar el almacenamiento local, las cookies, los índices de base de datos y otros recursos almacenados localmente por la aplicación web.</li>
+    <li><strong>Fuentes (Sources):</strong> Permite ver y depurar el código fuente de la aplicación, incluidos los archivos JavaScript, CSS y HTML.</li>
+    <li><strong>Fragmentos (Snippets):</strong> Permite guardar y ejecutar fragmentos de código JavaScript con facilidad.</li>
+</ol>
+<p>Las Chrome DevTools ofrecen muchas más funciones y herramientas que las mencionadas aquí, pero estas son algunas de las más relevantes para trabajar con JavaScript. Puedes acceder a las Chrome DevTools en Chrome haciendo clic con el botón derecho en cualquier parte de una página web y seleccionando "Inspeccionar" o utilizando el atajo de teclado <code>Ctrl+Shift+I</code> (Windows/Linux) o <code>Cmd+Opt+I</code> (Mac).</p>
+<h1>Explicación de <code>querySelector</code></h1>
+<p>El método <code>querySelector</code> es una función poderosa en JavaScript que se utiliza para seleccionar elementos del DOM (Document Object Model) utilizando selectores CSS. Permite buscar y obtener el primer elemento que coincide con el selector especificado.</p>
+
+<h2>Sintaxis</h2>
+<pre><code>element = document.querySelector(selector);</code></pre>
+
+<h2>Parámetros</h2>
+<ul>
+    <li><code>selector</code>: Un string que representa uno o más selectores CSS que se usan para encontrar el elemento correspondiente en el DOM.</li>
+</ul>
+
+<h2>Ejemplos</h2>
+
+<h3>1. Seleccionar un elemento por su ID</h3>
+<pre><code>var element = document.querySelector("#miId");
+console.log(element); // Devuelve el elemento con id="miId"</code></pre>
+
+<h3>2. Seleccionar un elemento por su clase</h3>
+<pre><code>var element = document.querySelector(".miClase");
+console.log(element); // Devuelve el primer elemento con class="miClase"</code></pre>
+
+<h3>3. Seleccionar un elemento por su etiqueta</h3>
+<pre><code>var element = document.querySelector("p");
+console.log(element); // Devuelve el primer &lt;p&gt; elemento</code></pre>
+
+<h3>4. Seleccionar un elemento usando combinaciones de selectores</h3>
+<pre><code>var element = document.querySelector("div.miClase #miId");
+console.log(element); // Devuelve el elemento con id="miId" que está dentro de un &lt;div&gt; con class="miClase"</code></pre>
+
+<h3>5. Seleccionar un elemento usando atributos</h3>
+<pre><code>var element = document.querySelector("input[type='text']");
+console.log(element); // Devuelve el primer &lt;input&gt; elemento con type="text"</code></pre>
+
+<h2>Consideraciones</h2>
+<p><code>querySelector</code> solo devuelve el primer elemento que coincide con el selector especificado. Si necesitas obtener todos los elementos que coinciden, puedes usar <code>document.querySelectorAll(selector)</code>.</p>
+<h1>Explicación de addEventListener, document, y bundlers</h1>
+
+    <h2>addEventListener</h2>
+    <p><code>addEventListener</code> es un método en JavaScript que permite añadir un evento a un elemento del DOM (Document Object Model). Este método es fundamental para crear interactividad en las páginas web.</p>
+
+    <h3>Sintaxis:</h3>
+    <code>
+        element.addEventListener(event, function, useCapture);
+    </code>
+    <ul>
+        <li><strong>element</strong>: El elemento del DOM al que deseas añadir el evento.</li>
+        <li><strong>event</strong>: El tipo de evento que quieres escuchar (por ejemplo, 'click', 'mouseover', 'keydown', etc.).</li>
+        <li><strong>function</strong>: La función que se ejecutará cuando ocurra el evento.</li>
+        <li><strong>useCapture</strong>: Un booleano opcional que indica si el evento debe ser capturado en la fase de captura (true) o en la fase de burbujeo (false, que es el valor por defecto).</li>
+    </ul>
+
+    <h3>Ejemplo:</h3>
+    <code>
+        document.getElementById('myButton').addEventListener('click', function() {
+            alert('Button was clicked!');
+        });
+    </code>
+
+    <h2>document</h2>
+    <p><code>document</code> es un objeto global que representa el documento HTML o XML cargado en el navegador. Proporciona varias propiedades y métodos para acceder y manipular el contenido y estructura del documento.</p>
+
+    <h3>Propiedades comunes:</h3>
+    <ul>
+        <li><strong>document.getElementById(id)</strong>: Devuelve el elemento con el ID especificado.</li>
+        <li><strong>document.querySelector(selector)</strong>: Devuelve el primer elemento que coincida con el selector CSS.</li>
+        <li><strong>document.querySelectorAll(selector)</strong>: Devuelve todos los elementos que coincidan con el selector CSS.</li>
+        <li><strong>document.createElement(tagName)</strong>: Crea un nuevo elemento HTML.</li>
+    </ul>
+
+    <h3>Ejemplo:</h3>
+    <code>
+        let element = document.getElementById('myElement');
+        element.style.color = 'red';
+    </code>
+
+    <h2>Bundlers</h2>
+    <p>Los bundlers son herramientas que toman módulos de código (JavaScript, CSS, imágenes, etc.) y los combinan en un único archivo o en unos pocos archivos, optimizados para el navegador. Esto mejora la eficiencia del sitio web, reduciendo el número de solicitudes HTTP y optimizando el rendimiento.</p>
+
+    <h3>Ejemplos de bundlers populares:</h3>
+
+    <h4>Webpack</h4>
+    <p>Una herramienta muy flexible y poderosa que permite gestionar, empaquetar y optimizar los módulos. Soporta loaders y plugins para transformar y optimizar diferentes tipos de archivos.</p>
+    <h5>Ejemplo de configuración:</h5>
+    <code>
+        // webpack.config.js
+        module.exports = {
+            entry: './src/index.js',
+            output: {
+                filename: 'bundle.js',
+                path: __dirname + '/dist'
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.css$/,
+                        use: ['style-loader', 'css-loader']
+                    },
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        use: 'babel-loader'
+                    }
+                ]
+            }
+        };
+    </code>
+
+    <h4>Parcel</h4>
+    <p>Un bundler sencillo y rápido que requiere poca configuración. Detecta automáticamente los diferentes tipos de archivos y los gestiona adecuadamente.</p>
+    <h5>Ejemplo de uso:</h5>
+    <code>
+        parcel index.html
+    </code>
+
+    <h4>Rollup</h4>
+    <p>Enfocado en la construcción de bibliotecas JavaScript, Rollup crea paquetes más pequeños y eficientes utilizando la sintaxis de módulos ES6.</p>
+    <h5>Ejemplo de configuración:</h5>
+    <code>
+        // rollup.config.js
+        import commonjs from '@rollup/plugin-commonjs';
+        import resolve from '@rollup/plugin-node-resolve';
+        import babel from '@rollup/plugin-babel';
+
+        export default {
+            input: 'src/index.js',
+            output: {
+                file: 'dist/bundle.js',
+                format: 'iife',
+                name: 'MyBundle'
+            },
+            plugins: [
+                resolve(),
+                commonjs(),
+                babel({ babelHelpers: 'bundled' })
+            ]
+        };
+    </code>
+
+    <p>Cada uno de estos bundlers tiene sus propias ventajas y desventajas, y la elección depende de las necesidades específicas del proyecto.</p>
+
+
+
+
+</div>
+        <div class="pagina" id="pagina2" style="display: none;">
+        <h1>NETSUITE CHEATSHEET</h1> 
+        <H2>Entities</H2>
+        <p>Entities are the people, places, and things that interact with your business. In NetSuite, entities are represented by records in the system. There are several types of entities in NetSuite, including:</p> 
+        <ul>
+            <li><strong>Customers:</strong> Individuals or companies that purchase goods or services from your business.</li>
+            <li><strong>Vendors:</strong> Individuals or companies that provide goods or services to your business.</li>
+            <li><strong>Employees:</strong> Individuals who work for your business.</li>
+            <li><strong>Partners:</strong> Individuals or companies that collaborate with your business.</li>
+            <li><strong>Contacts:</strong> Individuals associated with customers, vendors, employees, or partners.</li>
+        </ul>  
+        <h2>Items</h2>
+        <ul>
+            <li><strong>Inventory Items:</strong> Physical goods that you buy, sell, or manufacture.</li>
+            <li><strong>Non-Inventory Items:</strong> Goods or services that you buy or sell but do not track as inventory.</li>
+            <li><strong>Service Items:</strong> Services that you provide to customers.</li>
+            <li><strong>Assembly Items:</strong> Items that are built from other items.</li>
+            <li><strong>Kit Items:</strong> Groups of items that are sold together as a single unit.</li>
+        </ul>
+        <h2>Transactions</h2>
+        <ul>
+            <li><strong>Sales Orders:</strong> Orders from customers for goods or services.</li>
+            <li><strong>Purchase Orders:</strong> Orders to vendors for goods or services.</li>
+            <li><strong>Invoices:</strong> Bills to customers for goods or services.</li>
+            <li><strong>Bills:</strong> Invoices from vendors for goods or services.</li>
+            <li><strong>Payments:</strong> Payments from customers or to vendors.</li>
+            <li><strong>Journal Entries:</strong> Accounting transactions that affect the general ledger.</li>
+        </ul>
+        <h2> Ways of Bringing Data</h2>
+        <ul>
+            <li><strong>Importing:</strong> Importing data into NetSuite from external sources, such as CSV files or other systems.</li>
+            <li><strong>Integration:</strong> Integrating NetSuite with other systems, such as CRM, ERP, or e-commerce platforms.</li>
+            <li><strong>Manual Entry:</strong> Manually entering data into NetSuite using the user interface.</li>
+            <li><strong>Web Services:</strong> Using web services to interact with NetSuite programmatically.</li>
+        </ul>
+
+
+
+
+        
+        </div>
+       
+        <div class="pagina" id="pagina3" style="display: none;">
+            <h1>NodeJS</h1>
+
+            
+        </div>
+
+        
+        <div class="pagina" id="pagina4" style="display: none;">
+            <h1>HTML CHEATSHEET</h1>
+            <H2>AGRUPADORES</H2>
+            <dl>
+                <dt>div</dt>
+                <dd><div class="divprimero">Agrupador de contenido de toda indole, semanticamente no significa nada, es un bloque que contiene cosas</div></dd>
+                <dt>span</dt>
+                <dd><span>Agrupador en linea, semanticamente es igual que el div, solo que el div es de bloque y el span es inline </span></dd>
+                <H2> AGRUPADORES ESPECIALIZADOS</H2>
+                <dt>main</dt>
+                <dd>Agrupador especializado que indica el contenido principal</dd>
+                <dt>aside</dt>
+                <dd>Contenido que va aparte, referencia aparte, contenido bueno de ver que se despega del contenido principal</dd>
+                <dt>header</dt>
+                <dd>Para hacer las cabeceras de articulo, pagina, etc</dd>
+                <dt>footer</dt>
+                <dd>Pie de pagina, pie de contenido</dd>
+                <dt>nav</dt>
+                <dd>Normalmente va adentro de los footer y los header, es la navegacion del sitio, por ejemplo podria ser una lista ordenada dentro de un nav lo cual le indica al user agent que es para navegar al docuemnto o afuera de el</dd>
+            </dl>
+            <dl>
+                <dt>link</dt>
+                <dd>Se usa para relaciones entre documentos, por lo general para traer hojas de estilo desde afuera, son hyperlinks que sirven para que el usuario vaya de una pagina a otra, el href brinda la URI, el atributo rel especifica la relacion entre el documento y el link pudiendo ser este stylesheet(hoja de estilo), prefetch que vaya descargando eso de antemano, entre otros. El atributo media es para especificar el dispositrivo donde se mostrara </dd>
+                <!-- <link rel="stylesheet" type="text/css" href=""> --> 
+                <dt>code</dt>
+                <dd>para marcar codigo de un programa, funciona con la eitqueta de preformateado generalmente para respetar espaciado cambio de linea etc <code> if(true)</code></dd>
+                <dt>data</dt>
+                <dd>vincula un contenido dado con una traduccion legible por una maquina, esto es puramente semantico y no va a renderizarse de ninguna forma, value es a modo id<data value="123">valor</data></dd>
+                <dt>kbd</dt>
+                <dd>marca el texto que debe introducir el usuario <kbd>por ejemplo deberia introducir esto</kbd></dd>
+                <dt>figure</dt>
+                <dd> es un elemento de bloque que se usa para imagenes con descrpcion la cual se puede agregar con figcaption, presentacionalmente solo hace salto de linea y pone sangria, figure es en bloque y img es en linea, con</dd>
+                <!-- <figure><img src="pato-.jpg"><figcaption>Descripcion</figcaption></figure> -->
+                <dt>details</dt>
+                <dd>spoiler o detalles expandidos de lo que queriamos hablar, con summary adentro seleccionamos la parte visible que tiene el popup <details><summary>Este es el popup</summary><p>Este es el gran spoiler<p></details></dd>
+                <dt>dialog</dt>
+                <dd>dialogo de texto o alerta, es como una ventana emergente, si le pongo el atributo open aparece</dd>
+                <!-- <dialog open> hola </dialog> -->
+                <dt>video</dt>
+                <dd>para incrustar videos en un documento html, solo no hace nada, precisa de sus atributos que traen el contenido como src, o controls para que aparezcan los controles, autoplay, etc.</dd>
+                <video src="https://www.youtube.com/watch?v=f3dDVtJ2sec&ab_channel=TiagoForte" controls></video>
+                <!-- NO TODOS LOS FORMATOS SON ABIERTOS Y COMPATIBLES, EL WEBM ES EL ESTANDAR Y EL OGG ESTA BUENO DE USAR TAMBIEN -->
+                <dt>audio</dt>
+                <dd>para insertar contenido de audio</dd>
+            </dl>
+            <dl>
+                <dt>picture</dt>
+                <dd>Contenedor usado para especificar múltiples elementos source ( pueden ser imágenes o video) y un elemento img contenido en él para proveer versiones de una imágen para diferentes escenarios de dispositivos por tamaño o lo que fuere, siendo la img el escenario en caso de que fallen los sources</dd>
+        
+                <dt>audio</dt>
+                <dd>no usar autoplay.</dd>
+        
+                <dt>iframe</dt>
+                <dd>contexto de navegacion anidado, el cual permite incrustrar otra pagina de html</dd>
+        <iframe id="inlineFrameExample"
+            title="Inline Frame Example"
+            width="300"
+            height="200"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+        </iframe>
+            <div>HOLAAAAAAAAAAAAAAA</div>
+<form action="peteco.html" target="_self" method="GET" autocomplete="" novalidate="">
+    <label for="hola">Nombre:</label><input type="text" name="hola">
+    <input type="password" name="">
+    <input type="email" name="">
+    <input type="color" name="">
+    <input type="date" name="">
+    <input type="checkbox" name="">
+    <input type="radio" name="">
+    <input type="reset" name="">
+    <input type="submit" name="">
+</form>
+    <ol>
+        <li>primero</li>
+        <li>segundo</li>
+        <li>tercero</li>
+        <li>cuarto</li>
+        <li>quinto</li>
+        <button>hola</button>
+        <p>pe</p>
+    </ol>
+
+    <!-- <p class="especial marco peteco">Crear bla bla bla</p> -->
+	<div class="div2"></div>
+	<div class="div1"></div>
+	<div class="div3"></div>
+	<div class="div4"></div>
+
+    <figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+	<figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+	<figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+	<figure>
+		<img src="logo.jpeg"> <figcaption>Un pato</figcaption>
+	</figure>
+            <div id="holi"></div>
+
+    <div class="primer">1</div>
+	<div class="segundo">2</div>
+	<div class="tercero">3</div>
+	<div class="cuarto">4</div>
+
+        </div>
+
+
+        <div id="botones-paginacion">
+            <button onclick="mostrarPagina(1)">1</button>
+            <button onclick="mostrarPagina(2)">2</button>
+            <button onclick="mostrarPagina(3)">3</button>
+            <button onclick="mostrarPagina(4)">4</button>
+        </div>
+
+    
+   
+    
+<!-- Las Clases están para poner que un elemento es de un determinado tipo, pero cuando un elemento es de un determinado tipo
+se espera de que tenga sub-elementos adentro.
+Desde CSS podemos hacer cambios en SVG.
+
+Como incluir estilos: 
+-Con el atributo style en el componente html (NO USAR)
+-Con la etiqueta <style></style> poniendo el contenido dentro del html (USAR SOLO PARA PAGINAS SIMPLES)
+-Hoja de estilo externa (USAR ESTA FORMA)
+	-Con el elemento link <link  rel="sylesheet" href=""> (MÁS USADO)
+	-Regla at(@) haciendo @import  url("") 
+	-a traves de las cabeceras HTTP 
+-->
+
+
+    
+</body>
+</html>
