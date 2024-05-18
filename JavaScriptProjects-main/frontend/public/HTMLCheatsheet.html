@@ -829,27 +829,7 @@ console.log(element); // Devuelve el primer &lt;input&gt; elemento con type="tex
     <p>Una herramienta muy flexible y poderosa que permite gestionar, empaquetar y optimizar los módulos. Soporta loaders y plugins para transformar y optimizar diferentes tipos de archivos.</p>
     <h5>Ejemplo de configuración:</h5>
     <code>
-        // webpack.config.js
-        module.exports = {
-            entry: './src/index.js',
-            output: {
-                filename: 'bundle.js',
-                path: __dirname + '/dist'
-            },
-            module: {
-                rules: [
-                    {
-                        test: /\.css$/,
-                        use: ['style-loader', 'css-loader']
-                    },
-                    {
-                        test: /\.js$/,
-                        exclude: /node_modules/,
-                        use: 'babel-loader'
-                    }
-                ]
-            }
-        };
+      
     </code>
 
     <h4>Parcel</h4>
