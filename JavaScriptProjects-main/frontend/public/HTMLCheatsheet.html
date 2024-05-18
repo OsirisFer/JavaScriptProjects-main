@@ -279,21 +279,21 @@
     <h2>Ejemplo de uso:</h2>
     <pre>
         <code>
-          function validarEdad(edad) {
+          <!-- function validarEdad(edad) {
             if (edad < 18) {
               throw new Error("La edad debe ser mayor o igual a 18 años");
             }
             return "Puede ingresar";
           }
-    
-          try {
+     -->
+          <!-- try {
             let resultado = validarEdad(16);
             console.log(resultado);
           } catch (error) {
             console.error('Se produjo un error:', error.message);
           } finally {
             console.log('Este bloque siempre se ejecuta, independientemente de si se produjo un error o no');
-          }
+          } -->
         </code>
       </pre>
     <img src="Operadores.png" alt="Operadores JS">
@@ -305,7 +305,7 @@
             return "¡Hola, " + nombre + "!";
         }
         let mensaje = saludar("John");
-        console.log(mensaje); // Salida: ¡Hola, John!
+        <!-- console.log(mensaje); // Salida: ¡Hola, John! -->
     </code></pre>
         <h2>Llamando a Funciones</h2>
     <p>Cuando se define una función, aún no se ejecuta. Para llamar e invocar el código de una función, utiliza el nombre de la función seguido de paréntesis: <code>nombreDeLaFuncion()</code>.</p>
@@ -418,8 +418,8 @@
             })();
             console.log(modulo.publicoVariable); // Salida: Soy público
             console.log(modulo.publicoFuncion()); // Salida: También soy público
-            // console.log(modulo.privadoVariable); // Esto dará un error porque `privadoVariable` es privada
-            // console.log(modulo.privadoFuncion()); // Esto dará un error porque `privadoFuncion` es privada
+            <!-- // console.log(modulo.privadoVariable); // Esto dará un error porque `privadoVariable` es privada
+            // console.log(modulo.privadoFuncion()); // Esto dará un error porque `privadoFuncion` es privada -->
         </code></pre>        
         <p>Las IIFE son una herramienta útil en JavaScript para encapsular código y evitar la contaminación del ámbito global, lo que las hace especialmente útiles en aplicaciones más grandes y complejas.</p>
         <p>El objeto <code>arguments</code> en JavaScript es una variable local disponible dentro de todas las funciones que proporciona un conjunto de argumentos pasados a la función cuando es llamada. El objeto <code>arguments</code> es similar a un array, pero no tiene todas las funcionalidades de un array (por ejemplo, no tiene métodos como <code>map</code> o <code>forEach</code>).</p>
@@ -676,7 +676,7 @@
                 <pre><code>fetch('https://ejemplo.com/api/data')
                 .then(response => response.json())
                 .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));</code></pre>
+                <!-- .catch(error => console.error('Error:', error));</code></pre> -->
                 
                 <h3>Diferencias</h3>
                 <ul>
@@ -840,7 +840,7 @@ console.log(element); // Devuelve el primer &lt;input&gt; elemento con type="tex
     <h3>Ejemplo:</h3>
     <code>
         document.getElementById('myButton').addEventListener('click', function() {
-            alert('Button was clicked!');
+            <!-- alert('Button was clicked!'); -->
         });
     </code>
 
